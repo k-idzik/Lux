@@ -14,6 +14,9 @@ public class Player : MonoBehaviour {
 
     //Player components
     Animator animator;
+    private SkinnedMeshRenderer meshRenderer;
+    public Material lightMaterial;
+    public Material shadowMaterial;
 
     //Player Flags
     bool isMoving = false; //Indicates whether player is moving
@@ -23,6 +26,7 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
+        meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         currentSpeed = speed;
 	}
 	
@@ -95,5 +99,17 @@ public class Player : MonoBehaviour {
 
         //Move the player based on the movement vector and current speed relative to the world space.
         transform.Translate(movementVector * currentSpeed * Time.deltaTime, Space.World);
+    }
+
+    public void InShadow()
+    {
+        Debug.Log("InShadow");
+        meshRenderer.material = shadowMaterial;
+    }
+
+    public void InLight()
+    {
+        Debug.Log("IN LIGHT");
+        meshRenderer.material = lightMaterial;
     }
 }
