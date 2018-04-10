@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
     //Player Attributes
+    public float shadowLife = 100.0f;            //Amount of shadow life player has
     public float speed = 0.5f;              //Speed Player moves at normally
     public float turnRate = 0.5f;           //Speed Player turns at
     public float crouchSpeed = 0.25f;       //Speed player moves at when crouching
@@ -23,8 +24,25 @@ public class Player : MonoBehaviour {
     bool isCrouched = false;
     bool isRunning = false;
 
-	// Use this for initialization
-	void Start () {
+    #region Properties
+    public float ShadowLife
+    {
+        get { return shadowLife; }
+        set
+        {
+            shadowLife = value;
+
+            //Check to make sure shadowLife does not drop bellow zero or above 100
+            if (shadowLife < 0)
+                shadowLife = 0;
+            else if (shadowLife > 100)
+                shadowLife = 100;
+        }
+    }
+
+    #endregion
+    // Use this for initialization
+    void Start () {
         animator = GetComponent<Animator>();
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         currentSpeed = speed;
@@ -33,6 +51,7 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        
         ToggleCrouch(); 
         ToggleRun();
         Move();
@@ -105,11 +124,28 @@ public class Player : MonoBehaviour {
     {
         Debug.Log("InShadow");
         meshRenderer.material = shadowMaterial;
+        ModShadowLife(1);
     }
 
     public void InLight()
     {
         Debug.Log("IN LIGHT");
         meshRenderer.material = lightMaterial;
+        ModShadowLife(-1);
+    }
+
+    private void ModShadowLife(int mod)
+    {
+        shadowLife += mod;
+
+        //Check to make sure shadowLife does not drop bellow zero or above 100
+        if (shadowLife < 0)
+            shadowLife = 0;
+        else if (shadowLife > 100)
+            shadowLife = 100;
+
+        //Set Player scale based on amount of shadow Health left
+        Vector3 playerScale = new Vector3(1, 1, 1) * (shadowLife / 100.0f);
+        transform.localScale = playerScale;
     }
 }
