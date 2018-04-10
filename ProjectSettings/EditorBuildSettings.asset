@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/mainMenu.unity
+    guid: c1c6b5f22e043b945b62b43d57d7e9ed
+  - enabled: 1
+    path: Assets/Scenes/lilJays_lilRoom.unity
+    guid: 6c928aef4fd569344a8f05568f783e64
