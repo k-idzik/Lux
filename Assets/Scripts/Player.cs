@@ -11,8 +11,6 @@ public class Player : MonoBehaviour {
     public float runSpeed = 1.0f;           //Speed player moves at when running
     private float currentSpeed;             //Speed at which the player currently moves at
 
-   
-
     //Player components
     Animator animator;
     private SkinnedMeshRenderer meshRenderer;
@@ -41,6 +39,7 @@ public class Player : MonoBehaviour {
     }
 
     #endregion
+
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator>();
@@ -122,14 +121,14 @@ public class Player : MonoBehaviour {
 
     public void InShadow()
     {
-        Debug.Log("InShadow");
+        //Debug.Log("InShadow");
         meshRenderer.material = shadowMaterial;
         ModShadowLife(1);
     }
 
     public void InLight()
     {
-        Debug.Log("IN LIGHT");
+        //Debug.Log("IN LIGHT");
         meshRenderer.material = lightMaterial;
         ModShadowLife(-1);
     }

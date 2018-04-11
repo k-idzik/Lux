@@ -10,8 +10,6 @@ public class PlayerCam : MonoBehaviour {
    
     // Use this for initialization
 	void Start () {
-        
-
         Vector3 newCamPosition = (-playerTarget.transform.forward.normalized) * distFromPlayer + playerTarget.transform.position;
         newCamPosition.y = height;
 
