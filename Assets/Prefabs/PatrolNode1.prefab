@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4291011090978600}
   - component: {fileID: 135862659514494844}
   m_Layer: 0
-  m_Name: PatrolNode
+  m_Name: PatrolNode1
   m_TagString: Waypoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
