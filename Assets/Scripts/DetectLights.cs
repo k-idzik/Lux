@@ -25,10 +25,11 @@ public class DetectLights : MonoBehaviour
     }
 	
 	//Update is called once per frame
-	void Update()
+    //Raycasting is a physics element
+	void FixedUpdate()
     {
         //Loop through all lights
-        for (int i = 0; i < lightsOnGOs.Length; ++i)
+        for (int i = 0; i < lightsOnGOs.Length && lightPlayerIsIn != -2; ++i)
         {
             //http://answers.unity.com/answers/301825/view.html
             //https://forum.unity.com/threads/how-do-i-detect-if-an-object-is-in-front-of-another-object.53188/
@@ -50,16 +51,13 @@ public class DetectLights : MonoBehaviour
 
             //If there is a hit
             //Must be within the spotlight, if applicable
-            if (angleToPlayer <= spotAngle && Physics.Raycast(lightsOnGOs[i].transform.position, rayDirection, out hit, lightsOnGOs[i].range))
+            //Make sure it's the player (it will be, or it'll be untagged, but that's probably also the player)
+            if (angleToPlayer <= spotAngle && Physics.Raycast(lightsOnGOs[i].transform.position, rayDirection, out hit, lightsOnGOs[i].range) && hit.transform.tag == "Player")
             {
                 //Debug.DrawRay(lightsOnGOs[i].transform.position, rayDirection, Color.red); //Debug ray between the player and the light they're within range of
-                
-                //Make sure it's the player (it will be, or it'll be untagged, but that's probably also the player)
-                if (hit.transform.tag == "Player")
-                {
-                    player.InLight();
-                    lightPlayerIsIn = i; //Set the light the player is currently in
-                }
+
+                player.InLight();
+                lightPlayerIsIn = i; //Set the light the player is currently in
             }
             //If there's not a hit, the player is in shadow
             //Either leaving a light or all lights have been checked when the player
@@ -69,6 +67,28 @@ public class DetectLights : MonoBehaviour
                 player.InShadow();
                 lightPlayerIsIn = -1;
             }
+        }
+    }
+
+    //Collision with floor tiles
+    private void OnTriggerStay(Collider coll)
+    {
+        //When the player enters a light tile
+        if (coll.tag == "LightTile")
+        {
+            lightPlayerIsIn = -2;
+            player.InLight();
+        }
+    }
+
+    //Collision with floor tiles
+    private void OnTriggerExit(Collider coll)
+    {
+        //When the player leaves a light tile
+        if (coll.tag == "LightTile")
+        {
+            lightPlayerIsIn = -1;
+            player.InShadow();
         }
     }
 }

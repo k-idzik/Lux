@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
     //Player Attributes
@@ -11,6 +12,8 @@ public class Player : MonoBehaviour {
     public float runSpeed = 1.0f;           //Speed player moves at when running
     private float currentSpeed;             //Speed at which the player currently moves at
 
+    public float lightDamage= 2.0f;         //Damage taken when in light
+    public float shadowRechargeRate = 0.5f; //Rate at which shadow life recharges
     //Player components
     Animator animator;
     private SkinnedMeshRenderer meshRenderer;
@@ -123,28 +126,45 @@ public class Player : MonoBehaviour {
     {
         //Debug.Log("InShadow");
         meshRenderer.material = shadowMaterial;
-        ModShadowLife(1);
+        ModShadowLife(shadowRechargeRate);
     }
 
     public void InLight()
     {
         //Debug.Log("IN LIGHT");
         meshRenderer.material = lightMaterial;
-        ModShadowLife(-1);
+        ModShadowLife(-lightDamage);
     }
 
-    private void ModShadowLife(int mod)
+    private void ModShadowLife(float mod)
     {
         shadowLife += mod;
 
         //Check to make sure shadowLife does not drop bellow zero or above 100
         if (shadowLife < 0)
-            shadowLife = 0;
+            Die();
         else if (shadowLife > 100)
             shadowLife = 100;
 
         //Set Player scale based on amount of shadow Health left
         Vector3 playerScale = new Vector3(1, 1, 1) * (shadowLife / 100.0f);
         transform.localScale = playerScale;
+    }
+
+    //Kills the Player
+    private void Die()
+    {
+        animator.Play("Death");
+        SceneManager.LoadScene(0);
+        Destroy(this);
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Goal")
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }
