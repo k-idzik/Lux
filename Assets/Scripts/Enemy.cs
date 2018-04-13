@@ -5,6 +5,13 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    // determines how the patrol behaves when it reaches its final node
+    // LOOP: will restart at the beginning of its route, creating a loop
+    // REVERSE: will visit all nodes in reverse order, good for lines
+    public enum PatrolType { LOOP, REVERSE};
+    public PatrolType patrolBehavior;
+
+    // enemy variables
     private Animator enemyAnim;
     [SerializeField]
     private GameObject target;
@@ -83,9 +90,6 @@ public class Enemy : MonoBehaviour
 
         float angle = Vector3.Angle(direction, transform.forward);
 
-        //Debug.Log(angle);
-
-        //Debug.DrawLine(transform.position, transform.position + transform.forward.normalized * 1.5f);
         Debug.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(visionAngle, transform.up) * transform.forward * 20);
         Debug.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(-visionAngle, transform.up) * transform.forward * 20);
 
@@ -98,8 +102,6 @@ public class Enemy : MonoBehaviour
             RaycastHit hit;
            
             Physics.Raycast(transform.position, direction, out hit);
-
-            //Debug.Log(hit.transform.gameObject.name);
 
             if (hit.transform.gameObject == target)
             {
@@ -123,11 +125,20 @@ public class Enemy : MonoBehaviour
     {
         agent.destination = currentWaypoint.transform.position;
 
-        if (visitedWaypoints[visitedWaypoints.Count - 1] == true)
+        if (visitedWaypoints[visitedWaypoints.Count - 1] == true && patrolBehavior == PatrolType.REVERSE)
         {
             currentWaypoint = patrolRoute[visitedWaypoints.Count - 2];
 
             reverse = true;
+
+            for (int i = 0; i < visitedWaypoints.Count; i++)
+            {
+                visitedWaypoints[i] = false;
+            }
+        }
+        else if (visitedWaypoints[visitedWaypoints.Count - 1] == true && patrolBehavior == PatrolType.LOOP)
+        {
+            currentWaypoint = patrolRoute[0];
 
             for (int i = 0; i < visitedWaypoints.Count; i++)
             {

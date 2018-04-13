@@ -9,43 +9,43 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1817610950081642}
+  m_RootGameObject: {fileID: 1598655920279790}
   m_IsPrefabParent: 1
---- !u!1 &1817610950081642
+--- !u!1 &1598655920279790
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4291011090978600}
-  - component: {fileID: 135862659514494844}
+  - component: {fileID: 4878986516988690}
+  - component: {fileID: 135350552407954924}
   m_Layer: 0
-  m_Name: PatrolNode1
+  m_Name: PatrolNode
   m_TagString: Waypoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4291011090978600
+--- !u!4 &4878986516988690
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1817610950081642}
+  m_GameObject: {fileID: 1598655920279790}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.6045356, y: -0.8378128, z: 0.19173717}
+  m_LocalPosition: {x: -4.7554197, y: 0.5, z: -13.480747}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &135862659514494844
+--- !u!135 &135350552407954924
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1817610950081642}
+  m_GameObject: {fileID: 1598655920279790}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
