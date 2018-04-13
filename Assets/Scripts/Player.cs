@@ -11,9 +11,11 @@ public class Player : MonoBehaviour {
     public float crouchSpeed = 0.25f;       //Speed player moves at when crouching
     public float runSpeed = 1.0f;           //Speed player moves at when running
     private float currentSpeed;             //Speed at which the player currently moves at
+    private Vector3 prevMousePos;           //holds the previous mouse Postition
 
     public float lightDamage= 2.0f;         //Damage taken when in light
     public float shadowRechargeRate = 0.5f; //Rate at which shadow life recharges
+   
     //Player components
     Animator animator;
     private SkinnedMeshRenderer meshRenderer;
@@ -48,6 +50,7 @@ public class Player : MonoBehaviour {
         animator = GetComponent<Animator>();
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         currentSpeed = speed;
+        prevMousePos = Input.mousePosition;
 	}
 	
 	// Update is called once per frame
@@ -57,6 +60,8 @@ public class Player : MonoBehaviour {
         ToggleCrouch(); 
         ToggleRun();
         Move();
+
+        prevMousePos = Input.mousePosition;
 	}
 
     /// <summary>
@@ -100,16 +105,23 @@ public class Player : MonoBehaviour {
 
         isMoving = false;
 
+        //Rotate Player based on mouse movements
+        Vector3 deltaMousePos = Input.mousePosition - prevMousePos; //Get the change in mouse Position
+
+        transform.Rotate(0, turnRate * deltaMousePos.x * Time.deltaTime, 0);
+
         //Check to see if player should turn
         if (Input.GetButton("Horizontal"))
         {
-            transform.Rotate(new Vector3(0, turnRate * Input.GetAxis("Horizontal") * Time.deltaTime, 0));
+            // transform.Rotate(new Vector3(0, turnRate * Input.GetAxis("Horizontal") * Time.deltaTime, 0));
+            movementVector += transform.right * Input.GetAxis("Horizontal");
+            isMoving = true;
         }
 
         //Check to see if player should move forwards or backwards
         if (Input.GetButton("Vertical"))
         {
-            movementVector = transform.forward * Input.GetAxis("Vertical"); // set players movement vector to be the forwards or backwards vector based on sign of vertical axis
+            movementVector += transform.forward * Input.GetAxis("Vertical"); // set players movement vector to be the forwards or backwards vector based on sign of vertical axis
             isMoving = true;
         }
 

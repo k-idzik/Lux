@@ -42,9 +42,9 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: left shift
+    positiveButton: left ctrl
     altNegativeButton: 
-    altPositiveButton: right shift
+    altPositiveButton: right ctrl
     gravity: 3
     dead: 0.001
     sensitivity: 3
@@ -58,9 +58,9 @@ InputManager:
     descriptiveName: Toggles Run on or off
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: r
+    positiveButton: left shift
     altNegativeButton: 
-    altPositiveButton: 
+    altPositiveButton: right shift
     gravity: 3
     dead: 0.001
     sensitivity: 3
