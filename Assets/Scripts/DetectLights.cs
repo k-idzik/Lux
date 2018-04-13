@@ -50,16 +50,13 @@ public class DetectLights : MonoBehaviour
 
             //If there is a hit
             //Must be within the spotlight, if applicable
-            if (angleToPlayer <= spotAngle && Physics.Raycast(lightsOnGOs[i].transform.position, rayDirection, out hit, lightsOnGOs[i].range))
+            //Make sure it's the player (it will be, or it'll be untagged, but that's probably also the player)
+            if (angleToPlayer <= spotAngle && Physics.Raycast(lightsOnGOs[i].transform.position, rayDirection, out hit, lightsOnGOs[i].range) && hit.transform.tag == "Player")
             {
                 //Debug.DrawRay(lightsOnGOs[i].transform.position, rayDirection, Color.red); //Debug ray between the player and the light they're within range of
-                
-                //Make sure it's the player (it will be, or it'll be untagged, but that's probably also the player)
-                if (hit.transform.tag == "Player")
-                {
-                    player.InLight();
-                    lightPlayerIsIn = i; //Set the light the player is currently in
-                }
+
+                player.InLight();
+                lightPlayerIsIn = i; //Set the light the player is currently in
             }
             //If there's not a hit, the player is in shadow
             //Either leaving a light or all lights have been checked when the player
