@@ -8,6 +8,7 @@ TagManager:
   - Waypoint
   - Enemy
   - Goal
+  - LightTile
   layers:
   - Default
   - TransparentFX
