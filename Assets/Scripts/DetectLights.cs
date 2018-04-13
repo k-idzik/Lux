@@ -25,7 +25,8 @@ public class DetectLights : MonoBehaviour
     }
 	
 	//Update is called once per frame
-	void Update()
+    //Raycasting is a physics element
+	void FixedUpdate()
     {
         //Loop through all lights
         for (int i = 0; i < lightsOnGOs.Length && lightPlayerIsIn != -2; ++i)
