@@ -21,6 +21,7 @@ public class Player : MonoBehaviour {
     private SkinnedMeshRenderer meshRenderer;
     public Material lightMaterial;
     public Material shadowMaterial;
+    private ParticleSystem lightParticles;
 
     //Player Flags
     bool isMoving = false; //Indicates whether player is moving
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour {
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         currentSpeed = speed;
         prevMousePos = Input.mousePosition;
+        lightParticles = this.gameObject.GetComponent<ParticleSystem>(); 
 	}
 	
 	// Update is called once per frame
@@ -139,6 +141,12 @@ public class Player : MonoBehaviour {
         //Debug.Log("InShadow");
         meshRenderer.material = shadowMaterial;
         ModShadowLife(shadowRechargeRate);
+
+        //check if light particles are running - if so turn them off
+        if (lightParticles.isPlaying)
+        {
+            lightParticles.Stop();
+        }
     }
 
     public void InLight()
@@ -146,6 +154,13 @@ public class Player : MonoBehaviour {
         //Debug.Log("IN LIGHT");
         meshRenderer.material = lightMaterial;
         ModShadowLife(-lightDamage);
+
+        //check if we are already running the light particles -if not turn them on
+        if (!lightParticles.isPlaying)
+        {
+            lightParticles.Play();
+        }
+
     }
 
     private void ModShadowLife(float mod)
