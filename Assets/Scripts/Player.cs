@@ -52,13 +52,18 @@ public class Player : MonoBehaviour {
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         currentSpeed = speed;
         prevMousePos = Input.mousePosition;
-        lightParticles = this.gameObject.GetComponent<ParticleSystem>(); 
+        lightParticles = this.gameObject.GetComponent<ParticleSystem>();
+
+        //Lock mouse cursor to the middle of the screen
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        
+        Debug.Log("Cursor State: " + Cursor.lockState);
+
         ToggleCrouch(); 
         ToggleRun();
         Move();
@@ -108,7 +113,7 @@ public class Player : MonoBehaviour {
         isMoving = false;
 
         //Rotate Player based on mouse movements
-        Vector3 deltaMousePos = Input.mousePosition - prevMousePos; //Get the change in mouse Position
+        Vector3 deltaMousePos = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"),0); //Get the change in mouse Position
 
         transform.Rotate(0, turnRate * deltaMousePos.x * Time.deltaTime, 0);
 
@@ -134,6 +139,10 @@ public class Player : MonoBehaviour {
 
         //Move the player based on the movement vector and current speed relative to the world space.
         transform.Translate(movementVector * currentSpeed * Time.deltaTime, Space.World);
+
+        //Reset Cursor to center of screen
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void InShadow()

@@ -11,7 +11,7 @@ public class PlayerCam : MonoBehaviour {
     // Use this for initialization
 	void Start () {
         Vector3 newCamPosition = (-playerTarget.transform.forward.normalized) * distFromPlayer + playerTarget.transform.position;
-        newCamPosition.y = height;
+        newCamPosition.y = playerTarget.transform.position.y + height;
 
         transform.position = newCamPosition;
         transform.LookAt(playerTarget.transform);
@@ -20,7 +20,7 @@ public class PlayerCam : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Vector3 newCamPosition = (-playerTarget.transform.forward.normalized) * distFromPlayer + playerTarget.transform.position;
-        newCamPosition.y = height;
+        newCamPosition.y = playerTarget.transform.position.y + height;
 
         transform.position = newCamPosition;
         transform.LookAt(playerTarget.transform);
