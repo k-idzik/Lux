@@ -11,6 +11,10 @@ public class Enemy : MonoBehaviour
     public enum PatrolType { LOOP, REVERSE};
     public PatrolType patrolBehavior;
 
+    // cooldown between when enemy searches for player again
+    [SerializeField]
+    private float searchCooldown;
+
     // enemy variables
     private Animator enemyAnim;
     [SerializeField]
@@ -275,10 +279,11 @@ public class Enemy : MonoBehaviour
         {
            
             Debug.Log("WORK");
+            Debug.DrawLine(transform.position,target.transform.position,Color.red);
             agent.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
             if (running == false)
             {
-                StartCoroutine(Chase(5));
+                StartCoroutine(Chase(searchCooldown));
             }
         }
 
