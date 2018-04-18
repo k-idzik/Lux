@@ -551,11 +551,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 114141919349404638, guid: 6de3a30b0b9c48b4c90482ff7d254e57,
+    - target: {fileID: 114039568037326214, guid: 6de3a30b0b9c48b4c90482ff7d254e57,
         type: 2}
-      propertyPath: turnRate
-      value: 20
-      objectReference: {fileID: 0}
+      propertyPath: _lights.Array.data[0]
+      value: 
+      objectReference: {fileID: 1991103005}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6de3a30b0b9c48b4c90482ff7d254e57, type: 2}
   m_IsPrefabParent: 0

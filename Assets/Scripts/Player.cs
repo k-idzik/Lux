@@ -15,6 +15,11 @@ public class Player : MonoBehaviour {
 
     public float lightDamage= 2.0f;         //Damage taken when in light
     public float shadowRechargeRate = 0.5f; //Rate at which shadow life recharges
+
+    [SerializeField] private float pulseRange = 5.0f;   //Range that Pulse Light will shine to
+    [SerializeField] private float pulseRate = 0.05f;   //rate at which to brighten/dim pulse light
+    [SerializeField] private float pulseCost = 25.0f;   //Shadow Life cost to use pulse
+    [SerializeField] private float pulseCooldownTime = 1.0f; //Time player must wait before they can use the pulse power again
    
     //Player components
     Animator animator;
@@ -22,11 +27,13 @@ public class Player : MonoBehaviour {
     public Material lightMaterial;
     public Material shadowMaterial;
     private ParticleSystem lightParticles;
+    private Light pulseLight;               //Point Light used for the Pulse power
 
     //Player Flags
     bool isMoving = false; //Indicates whether player is moving
     bool isCrouched = false;
     bool isRunning = false;
+    bool canPulse = true;   //Indicates whether the player can use the pulse ability
 
     #region Properties
     public float ShadowLife
@@ -54,6 +61,8 @@ public class Player : MonoBehaviour {
         prevMousePos = Input.mousePosition;
         lightParticles = this.gameObject.GetComponent<ParticleSystem>();
 
+        pulseLight = GetComponentInChildren<Light>();
+
         //Lock mouse cursor to the middle of the screen
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
@@ -67,6 +76,12 @@ public class Player : MonoBehaviour {
         ToggleCrouch(); 
         ToggleRun();
         Move();
+
+        if(Input.GetButtonDown("Pulse") && canPulse) //Determine whether
+        {
+            //Physics.OverlapSphere(transform.position, pulseRange, LayerMask.GetMask("Enemy"));
+            StartCoroutine(Pulse());
+        }
 
         prevMousePos = Input.mousePosition;
 	}
@@ -187,6 +202,29 @@ public class Player : MonoBehaviour {
         transform.localScale = playerScale;
     }
 
+    private IEnumerator Pulse()
+    {
+        pulseLight.enabled = true; //Turn on Pulse Light 
+        canPulse = false;
+        shadowLife -= pulseCost; //Decrease Shadow Life by cost of pulse
+
+        //Brighten/Grow Light Phase
+        while (pulseLight.range < pulseRange)
+        {
+            pulseLight.range += pulseRate;
+            yield return null; //Cause coroutine to pause till next frame before continuing
+        }
+        //Dim/Shrink Light Phase
+        while (pulseLight.range > 0.0f)
+        {
+            pulseLight.range -= pulseRate;
+            yield return null;
+        }
+
+        pulseLight.enabled = false; //Turn off pulse light
+        yield return new WaitForSeconds(pulseCooldownTime);
+        canPulse = true;
+    }
     //Kills the Player
     private void Die()
     {
