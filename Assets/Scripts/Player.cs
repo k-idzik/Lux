@@ -63,13 +63,15 @@ public class Player : MonoBehaviour {
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         currentSpeed = speed;
         prevMousePos = Input.mousePosition;
-        lightParticles = this.gameObject.GetComponent<ParticleSystem>();
+        lightParticles = gameObject.GetComponent<ParticleSystem>();
 
         pulseLight = GetComponentInChildren<Light>();
 
         //Lock mouse cursor to the middle of the screen
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
+
+        InShadow(); //Set this now for instances where there are no lights, only tiles
 	}
 	
 	// Update is called once per frame

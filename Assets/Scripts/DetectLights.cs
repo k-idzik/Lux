@@ -8,9 +8,11 @@ public class DetectLights : MonoBehaviour
     private Player player; //Player script
     private Light[] lightsOnGOs; //All the lights in the scene
     private int lightPlayerIsIn = -1; //What light the player is under, avoids calls to player from all the lights every frame
+    private int frame = 0; //Slowly heal player
+    private int colliderFrame = 0; //Prevent player from shriveling up real quick on tiles
 
-	//Use this for initialization
-	void Awake()
+    //Use this for initialization
+    void Awake()
     {
         player = GetComponent<Player>();
 
@@ -23,11 +25,12 @@ public class DetectLights : MonoBehaviour
             lightsOnGOs[i] = temp[i].GetComponent<Light>();
         }
     }
-	
-	//Update is called once per frame
+
+    //Update is called once per frame
     //Raycasting is a physics element
-	void FixedUpdate()
+    void FixedUpdate()
     {
+        /*
         //Loop through all lights
         for (int i = 0; i < lightsOnGOs.Length && lightPlayerIsIn != -2; ++i)
         {
@@ -68,17 +71,34 @@ public class DetectLights : MonoBehaviour
                 lightPlayerIsIn = -1;
             }
         }
+        */
+
+        //Light tile only version
+        //Every 7th frame
+        if (lightPlayerIsIn == -1 && frame >= 6)
+        {
+            player.InShadow();
+
+            frame = 0;
+        }
+
+        frame++;
     }
 
     //Collision with floor tiles
     private void OnTriggerStay(Collider coll)
     {
         //When the player enters a light tile
-        if (coll.tag == "LightTile")
+        //Check every 5th frame
+        if (coll.tag == "LightTile" && colliderFrame >= 4)
         {
             lightPlayerIsIn = -2;
             player.InLight();
+
+            colliderFrame = 0;
         }
+
+        colliderFrame++;
     }
 
     //Collision with floor tiles
@@ -89,6 +109,8 @@ public class DetectLights : MonoBehaviour
         {
             lightPlayerIsIn = -1;
             player.InShadow();
+
+            colliderFrame = 0;
         }
     }
 }
