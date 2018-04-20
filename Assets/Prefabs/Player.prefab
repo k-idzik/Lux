@@ -1135,7 +1135,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1477299426611656}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 0.317, z: -3.05}
+  m_LocalPosition: {x: 0.656, y: 0.317, z: -6.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4858533128039354}
@@ -1582,6 +1582,7 @@ MonoBehaviour:
   _isAuto: 0
   _lights:
   - {fileID: 0}
+  - {fileID: 0}
   _minimumNbTargetOnShadow: 1
   _detectMode: 1
   _raycastinRate: 10
@@ -1708,11 +1709,12 @@ MonoBehaviour:
   lightDamage: 2
   shadowRechargeRate: 0.5
   pulseRange: 5
-  pulseRate: 0.1
+  pulseRate: 0.05
   pulseCost: 25
   pulseCooldownTime: 1.5
   lightMaterial: {fileID: 2100000, guid: dac90dffb710eee4b9825779200b556d, type: 2}
   shadowMaterial: {fileID: 2100000, guid: 6bc84d837df09cb468b92fc2f36ecba5, type: 2}
+  screenTint: {fileID: 0}
 --- !u!136 &136690536021378462
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
     //Player Attributes
@@ -34,6 +35,9 @@ public class Player : MonoBehaviour {
     bool isCrouched = false;
     bool isRunning = false;
     bool canPulse = true;   //Indicates whether the player can use the pulse ability
+
+    //screen tint
+    [SerializeField] private Image screenTint; 
 
     #region Properties
     public float ShadowLife
@@ -166,6 +170,8 @@ public class Player : MonoBehaviour {
         meshRenderer.material = shadowMaterial;
         ModShadowLife(shadowRechargeRate);
 
+        screenTint.color = new Color32(0, 0, 0, 0);
+
         //check if light particles are running - if so turn them off
         if (lightParticles.isPlaying)
         {
@@ -178,6 +184,8 @@ public class Player : MonoBehaviour {
         //Debug.Log("IN LIGHT");
         meshRenderer.material = lightMaterial;
         ModShadowLife(-lightDamage);
+
+        screenTint.color = new Color32(135, 27, 27, 33);
 
         //check if we are already running the light particles -if not turn them on
         if (!lightParticles.isPlaying)
