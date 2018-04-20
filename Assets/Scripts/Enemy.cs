@@ -170,7 +170,7 @@ public class Enemy : MonoBehaviour
     /// <param name="coll"></param>
     public void OnTriggerEnter(Collider coll)
     {
-        if (coll.transform.tag == "Waypoint" && reverse == false)
+        if (coll.transform.tag == "Waypoint" && coll.gameObject == currentWaypoint && reverse == false)
         {
             for (int i = 0; i < patrolRoute.Count; i++)
             {
@@ -190,7 +190,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if (coll.transform.tag == "Waypoint" && reverse == true)
+        if (coll.transform.tag == "Waypoint" && coll.gameObject == currentWaypoint && reverse == true)
         {
             for (int i = 0; i < patrolRoute.Count; i++)
             {
@@ -224,7 +224,7 @@ public class Enemy : MonoBehaviour
             alertScan = true;
             Destroy(coll.gameObject);
         }
-        if (coll.transform.tag == "Waypoint" && reverse == false)
+        if (coll.transform.tag == "Waypoint" && coll.gameObject == currentWaypoint && reverse == false)
         {
             for (int i = 0; i < patrolRoute.Count; i++)
             {
@@ -242,7 +242,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if (coll.transform.tag == "Waypoint" && reverse == true)
+        if (coll.transform.tag == "Waypoint" && coll.gameObject == currentWaypoint && reverse == true)
         {
             for (int i = 0; i < patrolRoute.Count; i++)
             {
