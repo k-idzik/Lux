@@ -9,5 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/mainMenu.unity
     guid: c1c6b5f22e043b945b62b43d57d7e9ed
   - enabled: 1
-    path: Assets/Scenes/Greyboxes/Level1-Maze.unity
-    guid: 70a358f062ae1604f8c36c4c5317b250
+    path: Assets/Scenes/Greyboxes/Tutorial0.unity
+    guid: bb3a374c76b67f14890ae259cd82fee1
+  - enabled: 1
+    path: Assets/Scenes/Greyboxes/Tutorial1.unity
+    guid: b8fc88ae354824b46a3a82626a96b6c0
+  - enabled: 1
+    path: Assets/Scenes/Greyboxes/Tutorial2.unity
+    guid: 9f245b234b4e40443b546ca53bb37303
+  - enabled: 1
+    path: Assets/Scenes/Greyboxes/Tutorial3.unity
+    guid: 2e7a0b6785f25044ca339b27820daf51
+  - enabled: 1
+    path: Assets/Scenes/Greyboxes/Medium2.unity
+    guid: 85af4af0d6402c149ab62816bbb2a3bd

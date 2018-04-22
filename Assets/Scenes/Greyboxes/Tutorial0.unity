@@ -458,8 +458,9 @@ GameObject:
   m_Component:
   - component: {fileID: 577627439}
   - component: {fileID: 577627438}
-  - component: {fileID: 577627437}
   - component: {fileID: 577627436}
+  - component: {fileID: 577627440}
+  - component: {fileID: 577627437}
   m_Layer: 0
   m_Name: Exit
   m_TagString: Goal
@@ -501,8 +502,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &577627437
-MeshCollider:
+--- !u!65 &577627437
+BoxCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -511,10 +512,8 @@ MeshCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  m_Size: {x: 10, y: 1, z: 10}
+  m_Center: {x: 0.000008940685, y: 1.5322481e-15, z: 0.000005960464}
 --- !u!33 &577627438
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -535,6 +534,18 @@ Transform:
   m_Father: {fileID: 1777527491}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
+--- !u!114 &577627440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 577627435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c51e00b8be8833740ac67c01b88612ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NextLevelName: Tutorial1
 --- !u!1 &770868716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,12 +1012,12 @@ Prefab:
     - target: {fileID: 224104486829001050, guid: e903b9ac0155aea498718995ab45f046,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 484.5
+      value: 481
       objectReference: {fileID: 0}
     - target: {fileID: 224104486829001050, guid: e903b9ac0155aea498718995ab45f046,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 272.5
+      value: 264
       objectReference: {fileID: 0}
     - target: {fileID: 224104486829001050, guid: e903b9ac0155aea498718995ab45f046,
         type: 2}

@@ -11,6 +11,8 @@ public class Menu : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         showingCredits = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 	}
 	
 	// Update is called once per frame
