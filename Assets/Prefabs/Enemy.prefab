@@ -244,16 +244,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patrolBehavior: 0
   searchCooldown: 2
-  target: {fileID: 0}
   visionAngle: 30
+  visionConeRange: 20
   patrolRoute:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  alertPoint: {fileID: 0}
-  enemyMove1: {fileID: 0}
-  enemyMove2: {fileID: 0}
 --- !u!114 &114471968511418952
 MonoBehaviour:
   m_ObjectHideFlags: 1
