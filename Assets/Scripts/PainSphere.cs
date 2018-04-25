@@ -35,4 +35,36 @@ public class PainSphere : MonoBehaviour {
             }
         }
     }
+
+    /// <summary>
+    /// Hurt player real bad when they enter
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            // ensure player can be 'spotted' by the light
+            Vector3 direction = player.gameObject.transform.position - this.transform.position;
+            RaycastHit hit;
+            Physics.Raycast(transform.position, direction, out hit);
+
+            if (hit.transform.gameObject == player.gameObject)
+            {
+                player.InLight("PainSphere");
+            }
+        }
+    }
+
+    /// <summary>
+    /// Hurt player real bad when they enter
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            player.InShadow();
+        }
+    }
 }
