@@ -31,7 +31,7 @@ public class PainSphere : MonoBehaviour {
 
             if (hit.transform.gameObject == player.gameObject)
             {
-                player.InLight();
+                player.InLight("PainSphere");
             }
         }
     }

@@ -30,6 +30,11 @@ public class Player : MonoBehaviour {
     private ParticleSystem lightParticles;
     private Light pulseLight;               //Point Light used for the Pulse power
 
+    //Shadow detection
+    //Prevents the bad
+    private ShadowDetect.ShadowDetect playerShadowDetect;
+    private DetectLights playerDetectLights;
+
     //Player Flags
     bool isMoving = false; //Indicates whether player is moving
     bool isCrouched = false;
@@ -70,6 +75,9 @@ public class Player : MonoBehaviour {
         //Lock mouse cursor to the middle of the screen
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
+
+        playerShadowDetect = GetComponent<ShadowDetect.ShadowDetect>();
+        playerDetectLights = GetComponent<DetectLights>();
 
         InShadow(); //Set this now for instances where there are no lights, only tiles
 	}
@@ -168,6 +176,10 @@ public class Player : MonoBehaviour {
 
     public void InShadow()
     {
+        //Make sure these are enabled
+        playerShadowDetect.enabled = true;
+        playerDetectLights.enabled = true;
+
         //Debug.Log("InShadow");
         meshRenderer.material = shadowMaterial;
         ModShadowLife(shadowRechargeRate);
@@ -181,8 +193,23 @@ public class Player : MonoBehaviour {
         }
     }
 
-    public void InLight()
+    public void InLight(string scriptName)
     {
+        //Avoid damage effect flashing
+        if (scriptName == "DetectLights")
+        {
+            playerShadowDetect.enabled = false;
+        }
+        else if (scriptName == "ShadowDetect")
+        {
+            playerDetectLights.enabled = false;
+        }
+        else
+        {
+            playerShadowDetect.enabled = false;
+            playerDetectLights.enabled = false;
+        }
+
         //Debug.Log("IN LIGHT");
         meshRenderer.material = lightMaterial;
         ModShadowLife(-lightDamage);
@@ -194,7 +221,6 @@ public class Player : MonoBehaviour {
         {
             lightParticles.Play();
         }
-
     }
 
     private void ModShadowLife(float mod)

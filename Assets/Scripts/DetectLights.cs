@@ -93,7 +93,7 @@ public class DetectLights : MonoBehaviour
         if (coll.tag == "LightTile" && colliderFrame >= 4)
         {
             lightPlayerIsIn = -2;
-            player.InLight();
+            player.InLight("DetectLights");
 
             colliderFrame = 0;
         }
