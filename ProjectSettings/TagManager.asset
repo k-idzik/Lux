@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Goal
   - LightTile
+  - Dog Spawn
   layers:
   - Default
   - TransparentFX

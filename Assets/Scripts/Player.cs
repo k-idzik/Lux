@@ -85,8 +85,6 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        Debug.Log("Cursor State: " + Cursor.lockState);
-
         ToggleCrouch(); 
         ToggleRun();
         Move();

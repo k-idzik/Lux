@@ -8,14 +8,22 @@ public class AlertManager : Singleton<AlertManager> {
     public GameObject pursuitCone;
     public GameObject[] spawnPoints;
     public bool alerted = false;
+    public bool dogsSpawned = false;
     public Transform lastKnownPosition;
     [SerializeField] private GameObject playerSpottedModel;
+    private List<PursuitCone> dogs;
     private Coroutine alertedTimer;
     public float alertTime = 5.0f;
 
+    //Properties
+    public List<PursuitCone> Dogs
+    {
+        get { return dogs; }
+    }
     // Use this for initialization
     void Start() {
-        
+        spawnPoints = GameObject.FindGameObjectsWithTag("Dog Spawn");
+        dogs = new List<PursuitCone>();
     }
 
     // Update is called once per frame
@@ -25,9 +33,20 @@ public class AlertManager : Singleton<AlertManager> {
 
     public void Alert(Transform detectedPosition)
     {
-        // spawn enemies before this gets called every frame
-        if (alerted == false)
+        // update dogs to go after players last known position
+        if (dogsSpawned)
+        {
+            for(int i = 0; i < dogs.Count; i++)
+            {
+                dogs[i].AlertPoint = detectedPosition.position;
+                dogs[i].currentState = PursuitCone.State.ALERT_POINT;
+            }
+        }
+        else
+        {
             spawnPursuitCones(detectedPosition.position);
+            dogsSpawned = true;
+        }
 
         alerted = true; //set alert status to alerted
         lastKnownPosition = detectedPosition; //Store last known player position
@@ -58,14 +77,18 @@ public class AlertManager : Singleton<AlertManager> {
     /// </summary>
     public void spawnPursuitCones(Vector3 alertPoint)
     {
+        if(dogsSpawned) { return; }//Don't spawn dogs if they are currently spawned
+
         // spawn all enemies at spawn points
         for (int i = 0; i < spawnPoints.Length; i++)
         {
-            PursuitCone newCone = Instantiate(pursuitCone, spawnPoints[i].transform.position, Quaternion.identity).GetComponent<PursuitCone>();
+            dogs.Add(Instantiate(pursuitCone, spawnPoints[i].transform.position, Quaternion.identity).GetComponent<PursuitCone>());
 
             // set transforms in newly instantiated pursuit cone
-            newCone.SpawnPoint = spawnPoints[i].transform.position;
-            newCone.AlertPoint = alertPoint;
+            dogs[i].SpawnPoint = spawnPoints[i].transform.position;
+            dogs[i].AlertPoint = alertPoint;
         }
+
+        dogsSpawned = true;
     }
 }

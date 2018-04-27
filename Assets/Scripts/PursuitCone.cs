@@ -26,8 +26,8 @@ public class PursuitCone : MonoBehaviour
     private Vector3 spawnPoint;
 
     // variables for tracking enemy state
-    private enum State { SPAWN_POINT,ALERT_POINT,PURSUE, DEAD };
-    private State currentState;
+    public enum State { SPAWN_POINT,ALERT_POINT,PURSUE, DEAD };
+    public State currentState;
     private State previousState;
     private bool reverse; // for detecting if we're doing the route in reverse, not the patrol state reverse
     private bool scanning = false;
@@ -158,6 +158,9 @@ public class PursuitCone : MonoBehaviour
                 break;
 
             case State.DEAD:
+                AlertManager.Instance.Dogs.Remove(this);
+                if (AlertManager.Instance.Dogs.Count == 0)
+                    AlertManager.Instance.dogsSpawned = false;
                 Destroy(this.gameObject);
                 break;
 
