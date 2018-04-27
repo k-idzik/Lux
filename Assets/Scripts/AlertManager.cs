@@ -10,7 +10,8 @@ public class AlertManager : Singleton<AlertManager> {
     public bool alerted = false;
     public Transform lastKnownPosition;
     [SerializeField] private GameObject playerSpottedModel;
-    public Coroutine altertedTimer;
+    private Coroutine alertedTimer;
+    public float alertTime = 5.0f;
 
     // Use this for initialization
     void Start() {
@@ -22,11 +23,33 @@ public class AlertManager : Singleton<AlertManager> {
 
     }
 
-    public  void Alert(Transform detectedPosition)
+    public void Alert(Transform detectedPosition)
     {
-        alerted = true;
 
+        alerted = true; //set alert status to alerted
+        lastKnownPosition = detectedPosition; //Store last known player position
+
+        //Turn on LastSeen Player model
+        playerSpottedModel.transform.position = lastKnownPosition.position;
+        playerSpottedModel.transform.rotation = lastKnownPosition.rotation;
+        playerSpottedModel.SetActive(true);
+
+        //Start Alert Timer
+        if(alertedTimer != null)
+        {
+            StopCoroutine(alertedTimer);
+        }
+
+        alertedTimer = StartCoroutine(AlertTimer());
     }
+
+    public IEnumerator AlertTimer()
+    {
+        yield return new WaitForSeconds(alertTime);
+        alerted = false;
+        playerSpottedModel.SetActive(false);
+    }
+
     /// <summary>
     /// called from sensor enemy to handle all alert changes
     /// </summary>

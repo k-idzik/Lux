@@ -74,7 +74,7 @@ public class Sensor : MonoBehaviour {
 
             if (hit.transform.gameObject == target)
             {
-
+                AlertManager.Instance.Alert(hit.transform);
                 return true;
             }
             else
@@ -102,10 +102,7 @@ public class Sensor : MonoBehaviour {
         }
 
         // player detection
-        if (VisionCone())
-        {
-           //TO DO ALERT BOI
-        }
+        VisionCone();
 
         agent.destination = currentWaypoint.transform.position;
     }
