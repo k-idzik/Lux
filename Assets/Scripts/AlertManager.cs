@@ -61,7 +61,7 @@ public class AlertManager : Singleton<AlertManager> {
         // spawn all enemies at spawn points
         for (int i = 0; i < spawnPoints.Length; i++)
         {
-            PursuitCone newCone = GameObject.Instantiate(pursuitCone, spawnPoints[i].transform.position, Quaternion.identity).GetComponent<PursuitCone>();
+            PursuitCone newCone = Instantiate(pursuitCone, spawnPoints[i].transform.position, Quaternion.identity).GetComponent<PursuitCone>();
 
             // set transforms in newly instantiated pursuit cone
             newCone.SpawnPoint = spawnPoints[i].transform.position;
