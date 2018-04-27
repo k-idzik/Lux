@@ -54,7 +54,7 @@ public class Sensor : MonoBehaviour {
     /// </summary>
     private bool VisionCone()
     {
-        Vector3 direction = target.transform.position - this.transform.position;
+        Vector3 direction = target.transform.position - transform.position;
 
         float angle = Vector3.Angle(direction, transform.forward);
 
