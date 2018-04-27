@@ -7,12 +7,6 @@ public class PursuitCone : MonoBehaviour
 {
     // enemy variables
 
-    // determines how the patrol behaves when it reaches its final node
-    // LOOP: will restart at the beginning of its route, creating a loop
-    // REVERSE: will visit all nodes in reverse order, good for lines
-    public enum PatrolType { LOOP, REVERSE };
-    public PatrolType patrolBehavior;
-
     // cooldown between when enemy searches for player again
     public float searchCooldown;
 
@@ -28,36 +22,28 @@ public class PursuitCone : MonoBehaviour
     private DetectionSphere detectionSphere;
 
     // route enemy will patrol on
-    private List<Transform> patrolRoute;
+    private Transform alertPoint;
+    private Transform spawnPoint;
 
     // variables for tracking enemy state
-    private enum State { PATROL ,PURSUE };
+    private enum State { SPAWN_POINT,ALERT_POINT,PURSUE };
     private State currentState;
     private State previousState;
-    private List<bool> visitedWaypoints;
-    private Transform currentWaypoint;
     private bool reverse; // for detecting if we're doing the route in reverse, not the patrol state reverse
     private bool scanning = false;
     private bool finished = false;
     private bool running = false;
-    public float nodeDetectRange = 1.5f;
+    public float nodeDetectRange = 0.5f;
 
-    public List<Transform> PatrolRoute
+    public Transform AlertPoint
     {
-        get { return patrolRoute; }
-        set { patrolRoute = value; }
+        get { return alertPoint; }
+        set { alertPoint = value; }
     }
-
-    public Transform CurrentWaypoint
+    public Transform SpawnPoint
     {
-        get { return currentWaypoint; }
-        set { currentWaypoint = value; }
-    }
-
-    public List<bool> VisitedWaypoints
-    {
-        get { return visitedWaypoints; }
-        set { visitedWaypoints = value; }
+        get { return spawnPoint; }
+        set { spawnPoint = value; }
     }
 
     // Use this for initialization
@@ -70,15 +56,8 @@ public class PursuitCone : MonoBehaviour
 
         // route initialization
         // gameManager should handle adding points/setting first point
-        visitedWaypoints = new List<bool>(); 
         reverse = false;
         currentState = State.ALERT_POINT;
-
-        // assign a default value of false for each waypoint in the patrol route
-        for (int i = 0; i < patrolRoute.Count; i++)
-        {
-            visitedWaypoints.Add(false);
-        }
     }
 
     /// <summary>
@@ -107,7 +86,6 @@ public class PursuitCone : MonoBehaviour
 
             if (hit.transform.gameObject == target)
             {
-
                 return true;
             }
             else
@@ -122,31 +100,14 @@ public class PursuitCone : MonoBehaviour
     /// hitting each waypoint before resetting the
     /// route
     /// </summary>
-    private void Patrol()
+    private void Patrol(Transform nextNode, State nextState)
     {
-        agent.destination = currentWaypoint.transform.position;
+        if ((transform.position - nextNode.position).magnitude < nodeDetectRange)
+            currentState = nextState;
 
-        // if they reach spawn again then destroy them
-        if (visitedWaypoints[visitedWaypoints.Count - 1] == true)
+        if (VisionCone() || detectionSphere.PlayerDetected)
         {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            // detect further waypoints
-            Transform nextNode = patrolRoute[patrolRoute.FindIndex(t => currentWaypoint) + 1];
-            if ((nextNode.position - transform.position).magnitude < nodeDetectRange)
-            {
-                visitedWaypoints[patrolRoute.FindIndex(t => currentWaypoint)] = true;
-                currentWaypoint = nextNode;
-            }
-
-            // player detection
-            if (VisionCone() || detectionSphere.PlayerDetected)
-            {
-                previousState = currentState;
-                currentState = State.PURSUE;
-            }
+            currentState = State.PURSUE;
         }
     }
 
@@ -185,11 +146,13 @@ public class PursuitCone : MonoBehaviour
         switch (currentState)
         {
             case State.ALERT_POINT:
-                Patrol();
+                agent.destination = alertPoint.position;
+                Patrol(alertPoint, State.SPAWN_POINT);
                 break;
 
             case State.SPAWN_POINT:
-                Patrol();
+                agent.destination = spawnPoint.position;
+                Patrol(spawnPoint, State.ALERT_POINT);
                 break;
 
             case State.PURSUE:
