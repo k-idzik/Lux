@@ -22,8 +22,8 @@ public class PursuitCone : MonoBehaviour
     private DetectionSphere detectionSphere;
 
     // route enemy will patrol on
-    private Transform alertPoint;
-    private Transform spawnPoint;
+    private Vector3 alertPoint;
+    private Vector3 spawnPoint;
 
     // variables for tracking enemy state
     private enum State { SPAWN_POINT,ALERT_POINT,PURSUE, DEAD };
@@ -35,12 +35,12 @@ public class PursuitCone : MonoBehaviour
     private bool running = false;
     public float nodeDetectRange = 0.5f;
 
-    public Transform AlertPoint
+    public Vector3 AlertPoint
     {
         get { return alertPoint; }
         set { alertPoint = value; }
     }
-    public Transform SpawnPoint
+    public Vector3 SpawnPoint
     {
         get { return spawnPoint; }
         set { spawnPoint = value; }
@@ -58,6 +58,7 @@ public class PursuitCone : MonoBehaviour
         // gameManager should handle adding points/setting first point
         reverse = false;
         currentState = State.ALERT_POINT;
+        previousState = State.ALERT_POINT;
     }
 
     /// <summary>
@@ -100,9 +101,9 @@ public class PursuitCone : MonoBehaviour
     /// hitting each waypoint before resetting the
     /// route
     /// </summary>
-    private void Patrol(Transform nextNode, State nextState)
+    private void Patrol(Vector3 nextNode, State nextState)
     {
-        if ((transform.position - nextNode.position).magnitude < nodeDetectRange)
+        if ((transform.position - nextNode).magnitude < nodeDetectRange)
             currentState = nextState;
 
         if (VisionCone() || detectionSphere.PlayerDetected)
@@ -119,6 +120,7 @@ public class PursuitCone : MonoBehaviour
         if (finished == false)
         {
             Debug.DrawLine(transform.position, target.transform.position, Color.red);
+            
             agent.destination = target.transform.position;
             if (running == false)
             {
@@ -146,12 +148,12 @@ public class PursuitCone : MonoBehaviour
         switch (currentState)
         {
             case State.ALERT_POINT:
-                agent.destination = alertPoint.position;
+                agent.destination = alertPoint;
                 Patrol(alertPoint, State.SPAWN_POINT);
                 break;
 
             case State.SPAWN_POINT:
-                agent.destination = spawnPoint.position;
+                agent.destination = spawnPoint;
                 Patrol(spawnPoint, State.DEAD);
                 break;
 
