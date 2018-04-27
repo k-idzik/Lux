@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
-{
+public class Sensor : MonoBehaviour {
+
     // enemy variables
 
     // determines how the patrol behaves when it reaches its final node
     // LOOP: will restart at the beginning of its route, creating a loop
     // REVERSE: will visit all nodes in reverse order, good for lines
-    public enum PatrolType { LOOP, REVERSE};
+    public enum PatrolType { LOOP, REVERSE };
     public PatrolType patrolBehavior;
 
     // cooldown between when enemy searches for player again
@@ -21,47 +21,31 @@ public class Enemy : MonoBehaviour
 
     // maximum range of vision cone
     public float visionConeRange;
-   
+
     // general enemy variables
     private GameObject target;
     private NavMeshAgent agent;
-    private DetectionSphere detectionSphere;
 
-    // route enemy will patrol on
     // route enemy will patrol on
     public List<Node> patrolRoute;
 
-
-    // variables for tracking enemy state
-    private enum State { PATROL, PURSUE};
-    private State currentState;
     private Node currentWaypoint;
     private bool reverse; // for detecting if we're doing the route in reverse, not the patrol state reverse
-    private bool patrol;
-    private bool pursuit;
     private bool scanning = false;
     private bool finished = false;
     private bool running = false;
 
-    public bool Pursuit
-    {
-        get
-        {
-            return pursuit;
-        }
-    }
+    public float nodeRange = 1.0f; //Range node has to be within for it to be detected
 
     // Use this for initialization
     void Start()
-    { 
+    {
         // setup
         agent = GetComponent<NavMeshAgent>();
-        detectionSphere = GetComponentInChildren<DetectionSphere>();
         target = GameObject.FindGameObjectWithTag("Player");
         currentWaypoint = patrolRoute[0];
         agent.destination = currentWaypoint.transform.position;
         reverse = false;
-        currentState = State.PATROL;
     }
 
     /// <summary>
@@ -85,17 +69,17 @@ public class Enemy : MonoBehaviour
         else
         {
             RaycastHit hit;
-           
+
             Physics.Raycast(transform.position, direction, out hit, visionConeRange);
 
             if (hit.transform.gameObject == target)
             {
-                
+
                 return true;
             }
             else
             {
-                
+
                 return false;
             }
         }
@@ -108,6 +92,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void Patrol()
     {
+
         //Get distance to next node
         float distToNode = (currentWaypoint.transform.position - transform.position).magnitude;
         if (distToNode <= currentWaypoint.nodeRange)
@@ -116,67 +101,20 @@ public class Enemy : MonoBehaviour
             currentWaypoint = patrolRoute[currentWaypoint.nextNodeIndex];
         }
 
-
         // player detection
-        if (VisionCone() || detectionSphere.PlayerDetected)
+        if (VisionCone())
         {
-            currentState = State.PURSUE;
+           //TO DO ALERT BOI
         }
 
         agent.destination = currentWaypoint.transform.position;
     }
-
-    private void OnCollisionEnter(Collision coll)
-    {
-        if (coll.gameObject.tag == "Player")
-        {
-            Player playerScript = FindObjectOfType<Player>();
-            Debug.Log("Gotcha!");
-        }
-    }
-
-    /// <summary>
-    /// responsible for finding and pursuing player
-    /// </summary>
-    private void Pursue()
-    {
-        if (finished == false)
-        {
-            Debug.DrawLine(transform.position,target.transform.position,Color.red);
-            agent.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
-            if (running == false)
-            {
-                StartCoroutine(Chase(searchCooldown));
-            }
-        }
-
-        if (finished == true)
-        {
-            finished = false;
-            currentState = State.PATROL;
-        }
-    }
-
-    internal IEnumerator Chase(float duration)
-    {
-        running = true;
-        yield return new WaitForSeconds(duration);
-        finished = true;
-        running = false;
-    }
-
+   
     // Update is called once per frame
     void Update()
     {
-        switch (currentState)
-        {
-            case State.PATROL:
-                Patrol();
-                break;
+        Patrol();
 
-            case State.PURSUE:
-                Pursue();
-                break;
-        }
+        
     }
 }
