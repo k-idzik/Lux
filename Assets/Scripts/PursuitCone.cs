@@ -59,6 +59,8 @@ public class PursuitCone : MonoBehaviour
         reverse = false;
         currentState = State.ALERT_POINT;
         previousState = State.ALERT_POINT;
+
+        agent.Warp(transform.position);
     }
 
     /// <summary>
