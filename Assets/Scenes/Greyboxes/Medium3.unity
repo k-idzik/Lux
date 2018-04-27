@@ -238,7 +238,8 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.39756998
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114376296588552552, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &37963123 stripped
@@ -4836,7 +4837,8 @@ Prefab:
       propertyPath: m_Name
       value: PatrolNode (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114376296588552552, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &408924842 stripped
@@ -8925,7 +8927,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114376296588552552, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &508300164 stripped
@@ -9291,7 +9294,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114376296588552552, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &678173088 stripped
@@ -13338,7 +13342,8 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.39756998
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114376296588552552, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &890933666 stripped
@@ -14711,7 +14716,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: bf292661e1f13d74a8cc926e43397f33, type: 2}
+  - {fileID: 2100000, guid: bfc6aa353205c5848b6ae885ed55605b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14820,7 +14825,8 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.39756998
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114376296588552552, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1350276163
@@ -15503,7 +15509,8 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.39756998
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114376296588552552, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1662590096 stripped
@@ -16044,7 +16051,8 @@ Prefab:
       propertyPath: m_Name
       value: PatrolNode (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114376296588552552, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1855343090 stripped
@@ -16114,7 +16122,8 @@ Prefab:
       propertyPath: m_Name
       value: PatrolNode (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114376296588552552, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1953046307 stripped
@@ -16219,7 +16228,8 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.39756998
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114376296588552552, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1992346950 stripped
@@ -16401,7 +16411,8 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.39756998
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114376296588552552, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1994848907 stripped
@@ -16624,7 +16635,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114376296588552552, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1af5854ce0b8ebb4da10a8335b0a4773, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &2054945372 stripped
