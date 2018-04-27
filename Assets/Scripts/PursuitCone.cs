@@ -83,9 +83,7 @@ public class PursuitCone : MonoBehaviour
         {
             RaycastHit hit;
 
-            Physics.Raycast(transform.position, direction, out hit, visionConeRange);
-
-            if (hit.transform.gameObject == target)
+            if (Physics.Raycast(transform.position, direction, out hit, visionConeRange) && hit.transform.gameObject == target)
             {
                 return true;
             }
