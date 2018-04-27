@@ -14,7 +14,7 @@ public class AlertManager : Singleton<AlertManager> {
 
     // Use this for initialization
     void Start() {
-
+        spawnPursuitCones(GameObject.FindGameObjectWithTag("Player").transform);
     }
 
     // Update is called once per frame
@@ -28,17 +28,18 @@ public class AlertManager : Singleton<AlertManager> {
 
     }
     /// <summary>
-    /// called from sensor enemy to handle all alert changes
+    /// will spawn ANGERY BOIS
     /// </summary>
-    public void LUANCHBOI(Transform alertPoint)
+    public void spawnPursuitCones(Transform alertPoint)
     {
         // spawn all enemies at spawn points
         for (int i = 0; i < spawnPoints.Length; i++)
         {
-            PursuitCone newCone = GameObject.Instantiate(pursuitCone).GetComponent<PursuitCone>();
+            PursuitCone newCone = GameObject.Instantiate(pursuitCone, spawnPoints[i].transform.position, Quaternion.identity).GetComponent<PursuitCone>();
 
-            // set variables in newly instantiated pursuit cone
-            
+            // set transforms in newly instantiated pursuit cone
+            newCone.SpawnPoint = spawnPoints[i].transform;
+            newCone.AlertPoint = alertPoint;
         }
     }
 }

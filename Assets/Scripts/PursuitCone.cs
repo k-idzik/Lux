@@ -26,7 +26,7 @@ public class PursuitCone : MonoBehaviour
     private Transform spawnPoint;
 
     // variables for tracking enemy state
-    private enum State { SPAWN_POINT,ALERT_POINT,PURSUE };
+    private enum State { SPAWN_POINT,ALERT_POINT,PURSUE, DEAD };
     private State currentState;
     private State previousState;
     private bool reverse; // for detecting if we're doing the route in reverse, not the patrol state reverse
@@ -152,7 +152,11 @@ public class PursuitCone : MonoBehaviour
 
             case State.SPAWN_POINT:
                 agent.destination = spawnPoint.position;
-                Patrol(spawnPoint, State.ALERT_POINT);
+                Patrol(spawnPoint, State.DEAD);
+                break;
+
+            case State.DEAD:
+                Destroy(this.gameObject);
                 break;
 
             case State.PURSUE:

@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 4797429200261400}
   - component: {fileID: 137953136577883728}
   - component: {fileID: 195495151612415730}
+  - component: {fileID: 114644082159781198}
   m_Layer: 0
   m_Name: PursuitCone
   m_TagString: Untagged
@@ -180,6 +181,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c93c2a38d6ebba0409e2dcdacf6d56eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114644082159781198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1692926942589304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0b8b7b40bfd09b4d94a04b057290c6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  searchCooldown: 5
+  visionAngle: 30
+  visionConeRange: 5
+  nodeDetectRange: 0.5
 --- !u!114 &114940080441917832
 MonoBehaviour:
   m_ObjectHideFlags: 1
