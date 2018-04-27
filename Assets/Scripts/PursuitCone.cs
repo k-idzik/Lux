@@ -33,6 +33,7 @@ public class PursuitCone : MonoBehaviour
     // variables for tracking enemy state
     private enum State { SPAWN_POINT, ALERT_POINT ,PURSUE };
     private State currentState;
+    private State previousState;
     private List<bool> visitedWaypoints;
     private Transform currentWaypoint;
     private bool reverse; // for detecting if we're doing the route in reverse, not the patrol state reverse
@@ -71,7 +72,7 @@ public class PursuitCone : MonoBehaviour
         // gameManager should handle adding points/setting first point
         visitedWaypoints = new List<bool>(); 
         reverse = false;
-        currentState = State.PATROL;
+        currentState = State.ALERT_POINT;
 
         // assign a default value of false for each waypoint in the patrol route
         for (int i = 0; i < patrolRoute.Count; i++)
@@ -143,6 +144,7 @@ public class PursuitCone : MonoBehaviour
             // player detection
             if (VisionCone() || detectionSphere.PlayerDetected)
             {
+                previousState = currentState;
                 currentState = State.PURSUE;
             }
         }
@@ -165,7 +167,7 @@ public class PursuitCone : MonoBehaviour
         else
         {
             finished = false;
-            currentState = State.PATROL;
+            currentState = previousState;
         }
     }
 
@@ -182,7 +184,11 @@ public class PursuitCone : MonoBehaviour
     {
         switch (currentState)
         {
-            case State.PATROL:
+            case State.ALERT_POINT:
+                Patrol();
+                break;
+
+            case State.SPAWN_POINT:
                 Patrol();
                 break;
 
