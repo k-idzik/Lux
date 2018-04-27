@@ -31,7 +31,7 @@ public class PursuitCone : MonoBehaviour
     private List<Transform> patrolRoute;
 
     // variables for tracking enemy state
-    private enum State { SPAWN_POINT, ALERT_POINT ,PURSUE };
+    private enum State { PATROL ,PURSUE };
     private State currentState;
     private State previousState;
     private List<bool> visitedWaypoints;
