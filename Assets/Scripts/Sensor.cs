@@ -5,7 +5,10 @@ using UnityEngine.AI;
 
 public class Sensor : MonoBehaviour {
 
-    // enemy variables
+    // Sensor variables
+    public bool orbSensor = false;
+
+    [SerializeField] private float detectionRadius; //Radius player must be within to be detected NOTE: Orb sensors the radius should be same as pointlight
 
     // determines how the patrol behaves when it reaches its final node
     // LOOP: will restart at the beginning of its route, creating a loop
@@ -34,8 +37,7 @@ public class Sensor : MonoBehaviour {
     private bool scanning = false;
     private bool finished = false;
     private bool running = false;
-
-    public float nodeRange = 1.0f; //Range node has to be within for it to be detected
+    
 
     // Use this for initialization
     void Start()
@@ -102,6 +104,7 @@ public class Sensor : MonoBehaviour {
         }
 
         // player detection
+        if(!orbSensor)
         VisionCone();
 
         agent.destination = currentWaypoint.transform.position;
@@ -112,6 +115,19 @@ public class Sensor : MonoBehaviour {
     {
         Patrol();
 
-        
+        //Detection sphere
+        RaycastHit rayHit;
+        Vector3 direction = target.transform.position - transform.position;
+        if(Physics.Raycast(transform.position, direction,out rayHit, detectionRadius) && rayHit.transform.gameObject == target)
+        {
+            AlertManager.Instance.Alert(rayHit.transform);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        //Draw Detection Radius
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 }

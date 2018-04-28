@@ -10,6 +10,8 @@ TagManager:
   - Goal
   - LightTile
   - Dog Spawn
+  - Orb Sensor
+  - Cone Sensor
   layers:
   - Default
   - TransparentFX
