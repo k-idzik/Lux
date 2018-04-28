@@ -12,6 +12,7 @@ TagManager:
   - Dog Spawn
   - Orb Sensor
   - Cone Sensor
+  - Sensor
   layers:
   - Default
   - TransparentFX

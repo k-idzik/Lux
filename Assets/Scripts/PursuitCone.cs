@@ -17,9 +17,9 @@ public class PursuitCone : MonoBehaviour
     public float visionConeRange;
 
     // general enemy variables
-    private GameObject target;
+    private Player target;
     private NavMeshAgent agent;
-    private DetectionSphere detectionSphere;
+    [SerializeField] private float detectionRadius = 0.5f;
 
     // route enemy will patrol on
     private Vector3 alertPoint;
@@ -51,8 +51,7 @@ public class PursuitCone : MonoBehaviour
     {
         // setup
         agent = GetComponent<NavMeshAgent>();
-        detectionSphere = GetComponentInChildren<DetectionSphere>();
-        target = GameObject.FindGameObjectWithTag("Player");
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
         // route initialization
         // gameManager should handle adding points/setting first point
@@ -60,6 +59,10 @@ public class PursuitCone : MonoBehaviour
         currentState = State.ALERT_POINT;
         previousState = State.ALERT_POINT;
 
+        //Assign spotlight to shadow detect scipt
+        Light[] light = GetComponentsInChildren<Light>();
+        for(int i = 0; i < light.Length; i++) 
+            target.GetComponent<ShadowDetect.ShadowDetect>().Lights.Add(light[i]);
         agent.Warp(transform.position);
     }
 
@@ -85,8 +88,9 @@ public class PursuitCone : MonoBehaviour
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(transform.position, direction, out hit, visionConeRange) && hit.transform.gameObject == target)
+            if (Physics.Raycast(transform.position, direction, out hit, visionConeRange) && hit.transform.gameObject == target.gameObject)
             {
+                AlertManager.Instance.Alert(hit.transform);
                 return true;
             }
             else
@@ -105,8 +109,8 @@ public class PursuitCone : MonoBehaviour
     {
         if ((transform.position - nextNode).magnitude < nodeDetectRange)
             currentState = nextState;
-
-        if (VisionCone() || detectionSphere.PlayerDetected)
+        
+        if (VisionCone())
         {
             currentState = State.PURSUE;
         }
@@ -145,6 +149,16 @@ public class PursuitCone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Check if player enters detection radius
+        RaycastHit rayHit;
+        Vector3 direction = target.transform.position - transform.position;
+        if ((Physics.Raycast(transform.position, direction, out rayHit, detectionRadius) && rayHit.transform.gameObject == target.gameObject))
+        {
+            AlertManager.Instance.Alert(rayHit.transform);
+            if (!target.InLightFlag) //prevents InLight method from stacking
+                rayHit.transform.gameObject.GetComponent<Player>().InLight("ShadowDetect");
+        }
+
         switch (currentState)
         {
             case State.ALERT_POINT:
@@ -159,6 +173,9 @@ public class PursuitCone : MonoBehaviour
 
             case State.DEAD:
                 AlertManager.Instance.Dogs.Remove(this);
+                Light[] light = GetComponentsInChildren<Light>();
+                for (int i = 0; i < light.Length; i++)
+                    target.GetComponent<ShadowDetect.ShadowDetect>().Lights.Remove(light[i]);
                 if (AlertManager.Instance.Dogs.Count == 0)
                     AlertManager.Instance.dogsSpawned = false;
                 Destroy(this.gameObject);
@@ -168,5 +185,11 @@ public class PursuitCone : MonoBehaviour
                 Pursue();
                 break;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 }

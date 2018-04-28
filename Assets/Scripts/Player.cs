@@ -29,7 +29,7 @@ public class Player : MonoBehaviour {
     public Material shadowMaterial;
     private ParticleSystem lightParticles;
     private Light pulseLight;               //Point Light used for the Pulse power
-
+    
     //Shadow detection
     //Prevents the bad
     private ShadowDetect.ShadowDetect playerShadowDetect;
@@ -40,6 +40,7 @@ public class Player : MonoBehaviour {
     bool isCrouched = false;
     bool isRunning = false;
     bool canPulse = true;   //Indicates whether the player can use the pulse ability
+    private bool inLight = false; //Indicates whether player is currently in light
 
     //screen tint
     [SerializeField] private Image screenTint; 
@@ -60,6 +61,7 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public bool InLightFlag { get { return inLight; } }
     #endregion
 
     // Use this for initialization
@@ -78,6 +80,13 @@ public class Player : MonoBehaviour {
 
         playerShadowDetect = GetComponent<ShadowDetect.ShadowDetect>();
         playerDetectLights = GetComponent<DetectLights>();
+
+        //Setup shadowDetection Lights
+        GameObject[] lights = GameObject.FindGameObjectsWithTag("Light");
+        for(int i =0; i < lights.Length; i++)
+        {
+            playerShadowDetect.Lights.Add(lights[i].GetComponent<Light>()); //adds Sensor light to light Detection scr
+        }
 
         InShadow(); //Set this now for instances where there are no lights, only tiles
 	}
@@ -174,6 +183,8 @@ public class Player : MonoBehaviour {
 
     public void InShadow()
     {
+        inLight = false;
+
         //Make sure these are enabled
         playerShadowDetect.enabled = true;
         playerDetectLights.enabled = true;
@@ -193,6 +204,7 @@ public class Player : MonoBehaviour {
 
     public void InLight(string scriptName)
     {
+        inLight = true;
         //Avoid damage effect flashing
         if (scriptName == "DetectLights")
         {

@@ -39,7 +39,10 @@ public class AlertManager : Singleton<AlertManager> {
             for(int i = 0; i < dogs.Count; i++)
             {
                 dogs[i].AlertPoint = detectedPosition.position;
-                dogs[i].currentState = PursuitCone.State.ALERT_POINT;
+                if (dogs[i].currentState != PursuitCone.State.PURSUE)
+                {
+                    dogs[i].currentState = PursuitCone.State.ALERT_POINT;
+                }
             }
         }
         else

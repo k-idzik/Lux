@@ -37,7 +37,8 @@ public class Sensor : MonoBehaviour {
     private bool scanning = false;
     private bool finished = false;
     private bool running = false;
-    
+
+    private Light sensorLight;
 
     // Use this for initialization
     void Start()
@@ -48,6 +49,8 @@ public class Sensor : MonoBehaviour {
         currentWaypoint = patrolRoute[0];
         agent.destination = currentWaypoint.transform.position;
         reverse = false;
+
+        sensorLight = GetComponentInChildren<Light>();
     }
 
     /// <summary>
