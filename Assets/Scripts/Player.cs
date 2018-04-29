@@ -181,6 +181,20 @@ public class Player : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Confined;
     }
 
+    /// <summary>
+    /// Helper method for displaying damage taken on UI
+    /// </summary>
+    private void DisplayDamage()
+    {
+        screenTint.color = new Color32(135, 27, 27, 33);
+
+        //check if we are already running the light particles -if not turn them on
+        if (!lightParticles.isPlaying)
+        {
+            lightParticles.Play();
+        }
+    }
+
     public void InShadow()
     {
         inLight = false;
@@ -224,13 +238,7 @@ public class Player : MonoBehaviour {
         meshRenderer.material = lightMaterial;
         ModShadowLife(-lightDamage);
 
-        screenTint.color = new Color32(135, 27, 27, 33);
-
-        //check if we are already running the light particles -if not turn them on
-        if (!lightParticles.isPlaying)
-        {
-            lightParticles.Play();
-        }
+        DisplayDamage();
     }
 
     private void ModShadowLife(float mod)
@@ -252,13 +260,21 @@ public class Player : MonoBehaviour {
     {
         pulseLight.enabled = true; //Turn on Pulse Light 
         canPulse = false;
-        shadowLife -= pulseCost; //Decrease Shadow Life by cost of pulse
 
         //Brighten/Grow Light Phase
         while (pulseLight.range < pulseRange)
         {
+            shadowLife -= pulseCost; //Decrease Shadow Life by cost of pulse
             pulseLight.range += pulseRate;
+            DisplayDamage();
             yield return null; //Cause coroutine to pause till next frame before continuing
+        }
+        // hold pulse while user holds button
+        while (Input.GetButton("Pulse"))
+        {
+            shadowLife -= pulseCost;
+            DisplayDamage();
+            yield return null;
         }
         //Dim/Shrink Light Phase
         while (pulseLight.range > 0.0f)
@@ -271,6 +287,7 @@ public class Player : MonoBehaviour {
         yield return new WaitForSeconds(pulseCooldownTime);
         canPulse = true;
     }
+
     //Kills the Player
     private void Die()
     {
