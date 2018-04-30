@@ -1715,16 +1715,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61e0d8efa74376e4aa1ee509e85e2b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxLife: 100
   shadowLife: 100
+  maxLifeSections: 4
+  availableSections: 0
+  lifePerSection: 0
   speed: 1.5
   turnRate: 60
   crouchSpeed: 0.5
   runSpeed: 2.5
   lightDamage: 2
   shadowRechargeRate: 0.5
-  pulseRange: 5
-  pulseRate: 0.25
-  pulseCost: 0.5
+  pulseRange: 8
+  pulseRate: 0.4
+  pulseCost: 0.4
   pulseCooldownTime: 0
   lightMaterial: {fileID: 2100000, guid: dac90dffb710eee4b9825779200b556d, type: 2}
   shadowMaterial: {fileID: 2100000, guid: 6bc84d837df09cb468b92fc2f36ecba5, type: 2}
@@ -1894,7 +1898,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -934769772
+  randomSeed: 343739501
   InitialModule:
     serializedVersion: 3
     enabled: 1

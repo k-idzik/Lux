@@ -63,8 +63,10 @@ public class Player : MonoBehaviour {
                 availableSections--;
 
             //Check to make sure shadowLife stays within its bounds (0 to the section cap)
-            if (shadowLife < 0)
-                shadowLife = 0;
+            if (shadowLife <= 0)
+            {
+                Die();
+            }
             else if (shadowLife > (lifePerSection * availableSections)) //hp is capped at the section
                 shadowLife = (lifePerSection * availableSections); 
 
@@ -275,14 +277,14 @@ public class Player : MonoBehaviour {
         {
             shadowLife -= pulseCost; //Decrease Shadow Life by cost of pulse
             pulseLight.range += pulseRate;
-            DisplayDamage();
+            //DisplayDamage();
             yield return null; //Cause coroutine to pause till next frame before continuing
         }
         // hold pulse while user holds button
         while (Input.GetButton("Pulse"))
         {
             shadowLife -= pulseCost;
-            DisplayDamage();
+            //DisplayDamage();
             yield return null;
         }
         //Dim/Shrink Light Phase
@@ -303,7 +305,6 @@ public class Player : MonoBehaviour {
         animator.Play("Death");
         SceneManager.LoadScene(0);
         Destroy(this);
-
     }
 
     private void OnTriggerEnter(Collider other)
