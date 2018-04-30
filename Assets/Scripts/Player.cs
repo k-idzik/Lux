@@ -6,7 +6,12 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
     //Player Attributes
-    public float shadowLife = 100.0f;            //Amount of shadow life player has
+    public float maxLife = 100.0f;
+    [SerializeField] private float shadowLife;            //Amount of shadow life player has
+    public float maxLifeSections = 4.0f;          //number of sections on life bar- hp will cap at the end of current section
+    [SerializeField] private float availableSections;        // number of sections that player has used up
+    [SerializeField] private float lifePerSection;           //life in each section - maxlife / max life sections
+
     public float speed = 0.5f;              //Speed Player moves at normally
     public float turnRate = 0.5f;           //Speed Player turns at
     public float crouchSpeed = 0.25f;       //Speed player moves at when crouching
@@ -53,11 +58,17 @@ public class Player : MonoBehaviour {
         {
             shadowLife = value;
 
-            //Check to make sure shadowLife does not drop bellow zero or above 100
+            //update hp cap section
+            if(shadowLife <= (lifePerSection * (availableSections - 1))) //is life less than the bottom of the current section
+                availableSections--;
+
+            //Check to make sure shadowLife stays within its bounds (0 to the section cap)
             if (shadowLife < 0)
                 shadowLife = 0;
-            else if (shadowLife > 100)
-                shadowLife = 100;
+            else if (shadowLife > (lifePerSection * availableSections)) //hp is capped at the section
+                shadowLife = (lifePerSection * availableSections); 
+
+            return;
         }
     }
 
@@ -73,6 +84,10 @@ public class Player : MonoBehaviour {
         lightParticles = gameObject.GetComponent<ParticleSystem>();
 
         pulseLight = GetComponentInChildren<Light>();
+
+        shadowLife = maxLife; //set HP intillay to max
+        availableSections = maxLifeSections; //all sections are available fromt he begining
+        lifePerSection = maxLife / maxLifeSections;
 
         //Lock mouse cursor to the middle of the screen
         Cursor.lockState = CursorLockMode.Confined;
@@ -243,13 +258,7 @@ public class Player : MonoBehaviour {
 
     private void ModShadowLife(float mod)
     {
-        shadowLife += mod;
-
-        //Check to make sure shadowLife does not drop bellow zero or above 100
-        if (shadowLife < 0)
-            Die();
-        else if (shadowLife > 100)
-            shadowLife = 100;
+        ShadowLife = ShadowLife + mod;
 
         //Set Player scale based on amount of shadow Health left
         Vector3 playerScale = new Vector3(1, 1, 1) * (shadowLife / 100.0f);
