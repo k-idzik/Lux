@@ -1732,6 +1732,7 @@ MonoBehaviour:
   pulseCooldownTime: 0
   lightMaterial: {fileID: 2100000, guid: dac90dffb710eee4b9825779200b556d, type: 2}
   shadowMaterial: {fileID: 2100000, guid: 6bc84d837df09cb468b92fc2f36ecba5, type: 2}
+  safeMaterial: {fileID: 2100000, guid: 8bffd4386f987db47a8c3f6714653dfa, type: 2}
   screenTint: {fileID: 0}
 --- !u!136 &136690536021378462
 CapsuleCollider:
@@ -1898,7 +1899,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 343739501
+  randomSeed: -1948430503
   InitialModule:
     serializedVersion: 3
     enabled: 1

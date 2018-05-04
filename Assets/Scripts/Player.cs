@@ -32,6 +32,7 @@ public class Player : MonoBehaviour {
     private SkinnedMeshRenderer meshRenderer;
     public Material lightMaterial;
     public Material shadowMaterial;
+    public Material safeMaterial;
     private ParticleSystem lightParticles;
     private Light pulseLight;               //Point Light used for the Pulse power
     
@@ -46,6 +47,7 @@ public class Player : MonoBehaviour {
     bool isRunning = false;
     bool canPulse = true;   //Indicates whether the player can use the pulse ability
     private bool inLight = false; //Indicates whether player is currently in light
+    private bool isSafe = false; // Indicates if a player is in a safe zone - used to know when to change material
 
     //screen tint
     [SerializeField] private Image screenTint; 
@@ -106,6 +108,21 @@ public class Player : MonoBehaviour {
         }
 
         InShadow(); //Set this now for instances where there are no lights, only tiles
+
+        // detect if a player spawns in a safe zone
+        // seemed wasteful to write an onTriggerStay for a use case that could only happen at the start
+        // so this will function the same as that, only it runs once
+        GameObject [] safeZones = GameObject.FindGameObjectsWithTag("SafeZone");
+        int zonesCount = safeZones.Length;
+        for(int i = 0; i < zonesCount; i++)
+        {
+            if (safeZones[i].GetComponent<BoxCollider>().bounds.Contains(transform.position))
+            {
+                gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+                meshRenderer.material = safeMaterial;
+                isSafe = true;
+            }
+        }
 	}
 	
 	// Update is called once per frame
@@ -221,7 +238,9 @@ public class Player : MonoBehaviour {
         playerDetectLights.enabled = true;
 
         //Debug.Log("InShadow");
-        meshRenderer.material = shadowMaterial;
+        // will not overwrite material if in safe zone
+        if (!isSafe)
+            meshRenderer.material = shadowMaterial;
         ModShadowLife(shadowRechargeRate);
 
         screenTint.color = new Color32(0, 0, 0, 0);
@@ -252,7 +271,9 @@ public class Player : MonoBehaviour {
         }
 
         //Debug.Log("IN LIGHT");
-        meshRenderer.material = lightMaterial;
+        // will not overwrite material if in safe zone
+        if (!isSafe)
+            meshRenderer.material = lightMaterial;
         ModShadowLife(-lightDamage);
 
         DisplayDamage();
@@ -312,6 +333,22 @@ public class Player : MonoBehaviour {
         if(other.tag == "Goal")
         {
             SceneManager.LoadScene(0);
+        }
+        else if (other.tag == "SafeZone") // player has entered safe zone, make it so enemies can't see them
+        {
+            gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+            meshRenderer.material = safeMaterial;
+            isSafe = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "SafeZone") // player has left safe zone, re-enable raycast
+        {
+            gameObject.layer = LayerMask.NameToLayer("Player");
+            meshRenderer.material = shadowMaterial;
+            isSafe = false;
         }
     }
 }
