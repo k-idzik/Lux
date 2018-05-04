@@ -41,7 +41,7 @@ public class GameUI : MonoBehaviour {
 
             //move section to proper spot
             //float xPos = (this.gameObject.transform.position.x / (player.maxLifeSections - 2.0f)) * (i + 1.0f);
-            RectTransform rt = (RectTransform)this.gameObject.transform;
+            RectTransform rt = (RectTransform)shadowMeter.gameObject.transform;
             float xPos = (rt.rect.width / (player.maxLifeSections)) * (i + 1.0f);
             currentSection.transform.position = new Vector3(xPos, currentSection.transform.position.y, currentSection.transform.position.z);
         }
