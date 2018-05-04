@@ -106,6 +106,17 @@ public class Player : MonoBehaviour {
         }
 
         InShadow(); //Set this now for instances where there are no lights, only tiles
+
+        // detect if a player spawns in a safe zone
+        // seemed wasteful to write an onTriggerStay for a use case that could only happen at the start
+        // so this will function the same as that, only it runs once
+        GameObject [] safeZones = GameObject.FindGameObjectsWithTag("SafeZone");
+        int zonesCount = safeZones.Length;
+        for(int i = 0; i < zonesCount; i++)
+        {
+            if (safeZones[i].GetComponent<BoxCollider>().bounds.Contains(transform.position))
+                gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        }
 	}
 	
 	// Update is called once per frame
