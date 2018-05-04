@@ -313,5 +313,17 @@ public class Player : MonoBehaviour {
         {
             SceneManager.LoadScene(0);
         }
+        else if (other.tag == "SafeZone") // player has entered safe zone, make it so enemies can't see them
+        {
+            gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "SafeZone") // player has left safe zone, re-enable raycast
+        {
+            gameObject.layer = LayerMask.NameToLayer("Player");
+        }
     }
 }
