@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orbSensor: 1
-  detectionRadius: 2
+  detectionRadius: 1.5
   patrolBehavior: 0
   searchCooldown: 0
   visionAngle: 0

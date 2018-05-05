@@ -577,9 +577,9 @@ GameObject:
   - component: {fileID: 212400810}
   - component: {fileID: 212400809}
   - component: {fileID: 212400808}
-  - component: {fileID: 212400807}
   - component: {fileID: 212400806}
   - component: {fileID: 212400805}
+  - component: {fileID: 212400807}
   m_Layer: 0
   m_Name: Enemy (1)
   m_TagString: Enemy
@@ -648,7 +648,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1399844729
+  randomSeed: 1145955647
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3963,19 +3963,20 @@ ParticleSystemRenderer:
 --- !u!114 &212400807
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114375834045857396, guid: 3b8f7d4be258bec4d8019b0a429487bd,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 212400804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff2bcf6f469acba47b62d7c9556ddb5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 02e9966fde74d294294b8d2d8e588220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolBehavior: 1
+  orbSensor: 1
+  detectionRadius: 1.5
+  patrolBehavior: 0
   searchCooldown: 2
-  visionAngle: 30
-  visionConeRange: 20
+  visionAngle: 0
+  visionConeRange: 0
   patrolRoute:
   - {fileID: 678173090}
   - {fileID: 1953046309}
@@ -4909,9 +4910,9 @@ GameObject:
   - component: {fileID: 442600506}
   - component: {fileID: 442600505}
   - component: {fileID: 442600504}
-  - component: {fileID: 442600503}
   - component: {fileID: 442600502}
   - component: {fileID: 442600501}
+  - component: {fileID: 442600503}
   m_Layer: 0
   m_Name: Enemy (2)
   m_TagString: Enemy
@@ -4980,7 +4981,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 68813501
+  randomSeed: 1120251452
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -8295,19 +8296,20 @@ ParticleSystemRenderer:
 --- !u!114 &442600503
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114375834045857396, guid: 3b8f7d4be258bec4d8019b0a429487bd,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 442600500}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff2bcf6f469acba47b62d7c9556ddb5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 02e9966fde74d294294b8d2d8e588220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orbSensor: 1
+  detectionRadius: 1.5
   patrolBehavior: 0
   searchCooldown: 2
-  visionAngle: 30
-  visionConeRange: 20
+  visionAngle: 0
+  visionConeRange: 0
   patrolRoute:
   - {fileID: 508300166}
   - {fileID: 1855343092}
@@ -9674,9 +9676,9 @@ GameObject:
   - component: {fileID: 848556109}
   - component: {fileID: 848556108}
   - component: {fileID: 848556107}
-  - component: {fileID: 848556106}
   - component: {fileID: 848556105}
   - component: {fileID: 848556104}
+  - component: {fileID: 848556106}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -9745,7 +9747,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 684146402
+  randomSeed: -1279955491
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -13060,19 +13062,20 @@ ParticleSystemRenderer:
 --- !u!114 &848556106
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114375834045857396, guid: 3b8f7d4be258bec4d8019b0a429487bd,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 848556103}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff2bcf6f469acba47b62d7c9556ddb5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 02e9966fde74d294294b8d2d8e588220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orbSensor: 1
+  detectionRadius: 1.5
   patrolBehavior: 0
   searchCooldown: 2
-  visionAngle: 30
-  visionConeRange: 20
+  visionAngle: 0
+  visionConeRange: 0
   patrolRoute:
   - {fileID: 2054945374}
   - {fileID: 408924844}
