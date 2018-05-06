@@ -8,8 +8,7 @@ public class billboard : MonoBehaviour {
     // Use this for initialization
     void Start () {
         focus = GameObject.FindGameObjectWithTag("Goal");
-        this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
-
+        gameObject.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -17,15 +16,11 @@ public class billboard : MonoBehaviour {
         //toggle compass on/off
         if (Input.GetMouseButtonDown(1))
         {
-            this.gameObject.transform.GetChild(0).gameObject.SetActive(!this.gameObject.transform.GetChild(0).gameObject.activeSelf);
-
+            gameObject.transform.GetChild(0).gameObject.SetActive(!gameObject.transform.GetChild(0).gameObject.activeSelf);
         }
 
         //turn compass parent- not the child, the child maintains its rotation so its always facing up from the ground
-        Transform lookPos = focus.transform;
-        lookPos.position = new Vector3(lookPos.transform.position.x, this.gameObject.transform.position.y, lookPos.position.z);
-        gameObject.transform.LookAt (lookPos);
-
-
+        Vector3 lookPos = new Vector3(focus.transform.position.x, gameObject.transform.position.y, focus.transform.position.z);
+        gameObject.transform.LookAt(lookPos);
     }
 }
