@@ -1,34 +1,66 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AlertManager : Singleton<AlertManager> {
 
     // prefabs for spawnable enemies
     public GameObject pursuitCone;
     public GameObject[] spawnPoints;
-    public bool alerted = false;
-    public bool dogsSpawned = false;
+    public bool alerted;
+    public bool dogsSpawned;
     public Transform lastKnownPosition;
     [SerializeField] private GameObject playerSpottedModel;
     private List<PursuitCone> dogs;
     private Coroutine alertedTimer;
     public float alertTime = 5.0f;
+    //private string sceneName;
 
     //Properties
     public List<PursuitCone> Dogs
     {
         get { return dogs; }
     }
+
+    //Instance management to avoid duplicate singletons
+    //https://answers.unity.com/questions/408518/dontdestroyonload-duplicate-object-in-a-singleton.html
+    public static AlertManager alertMan;
+    private void Awake()
+    {
+        //Prevent duplicates
+        if (!alertMan)
+            alertMan = this;
+        else
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
+    }
+
     // Use this for initialization
-    void Start() {
+    void Start()
+    {
         spawnPoints = GameObject.FindGameObjectsWithTag("Dog Spawn");
         dogs = new List<PursuitCone>();
+        //Restart behaviors
+        alerted = false;
+        dogsSpawned = false;
+        playerSpottedModel.SetActive(false);
+        //sceneName = SceneManager.GetActiveScene().name;
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
+        ////Run start again if this is a new scene
+        //if (sceneName != SceneManager.GetActiveScene().name)
+        //    Start();
+    }
 
+    //When the scene reloads, re-gather resources
+    public void Restart()
+    {
+        Start();
     }
 
     public void Alert(Transform detectedPosition)

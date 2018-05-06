@@ -50,7 +50,12 @@ public class Player : MonoBehaviour {
     private bool isSafe = false; // Indicates if a player is in a safe zone - used to know when to change material
 
     //screen tint
-    [SerializeField] private Image screenTint; 
+    [SerializeField] private Image screenTint;
+
+    //Next level to load
+    [SerializeField] private int nextScene;
+
+    private AlertManager alertMan; //Because instances don't work apparently
 
     #region Properties
     public float ShadowLife
@@ -123,7 +128,10 @@ public class Player : MonoBehaviour {
                 isSafe = true;
             }
         }
-	}
+
+        alertMan = GameObject.FindGameObjectWithTag("Alert").GetComponent<AlertManager>();
+        alertMan.Restart();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -324,15 +332,15 @@ public class Player : MonoBehaviour {
     private void Die()
     {
         animator.Play("Death");
-        SceneManager.LoadScene(0);
-        Destroy(this);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); //Reload the scene when the player dies
+        //Destroy(this);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Goal")
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(nextScene);
         }
         else if (other.tag == "SafeZone") // player has entered safe zone, make it so enemies can't see them
         {

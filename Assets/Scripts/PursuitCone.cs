@@ -35,6 +35,8 @@ public class PursuitCone : MonoBehaviour
     private bool running = false;
     public float nodeDetectRange = 0.5f;
 
+    private AlertManager alertMan; //Because instances don't work apparently
+
     public Vector3 AlertPoint
     {
         get { return alertPoint; }
@@ -64,6 +66,8 @@ public class PursuitCone : MonoBehaviour
         for(int i = 0; i < light.Length; i++) 
             target.GetComponent<ShadowDetect.ShadowDetect>().Lights.Add(light[i]);
         agent.Warp(transform.position);
+
+        alertMan = GameObject.FindGameObjectWithTag("Alert").GetComponent<AlertManager>();
     }
 
     /// <summary>
@@ -90,7 +94,8 @@ public class PursuitCone : MonoBehaviour
 
             if (Physics.Raycast(transform.position, direction, out hit, visionConeRange) && hit.transform.gameObject == target.gameObject)
             {
-                AlertManager.Instance.Alert(hit.transform);
+                //AlertManager.Instance.Alert(hit.transform); //Error
+                alertMan.Alert(hit.transform);
                 return true;
             }
             else
@@ -154,7 +159,8 @@ public class PursuitCone : MonoBehaviour
         Vector3 direction = target.transform.position - transform.position;
         if ((Physics.Raycast(transform.position, direction, out rayHit, detectionRadius) && rayHit.transform.gameObject == target.gameObject))
         {
-            AlertManager.Instance.Alert(rayHit.transform);
+            //AlertManager.Instance.Alert(rayHit.transform);
+            alertMan.Alert(rayHit.transform); //Error
             if (!target.InLightFlag) //prevents InLight method from stacking
                 rayHit.transform.gameObject.GetComponent<Player>().InLight("ShadowDetect");
         }
@@ -172,13 +178,16 @@ public class PursuitCone : MonoBehaviour
                 break;
 
             case State.DEAD:
-                AlertManager.Instance.Dogs.Remove(this);
+                //AlertManager.Instance.Dogs.Remove(this); //Error
+                alertMan.Dogs.Remove(this);
                 Light[] light = GetComponentsInChildren<Light>();
                 for (int i = 0; i < light.Length; i++)
                     target.GetComponent<ShadowDetect.ShadowDetect>().Lights.Remove(light[i]);
-                if (AlertManager.Instance.Dogs.Count == 0)
-                    AlertManager.Instance.dogsSpawned = false;
-                Destroy(this.gameObject);
+                //if (AlertManager.Instance.Dogs.Count == 0) //Error
+                //    AlertManager.Instance.dogsSpawned = false;
+                if (alertMan.Dogs.Count == 0) //Error
+                    alertMan.dogsSpawned = false;
+                Destroy(gameObject);
                 break;
 
             case State.PURSUE:

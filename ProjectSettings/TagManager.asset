@@ -14,6 +14,7 @@ TagManager:
   - Cone Sensor
   - Sensor
   - SafeZone
+  - Alert
   layers:
   - Default
   - TransparentFX

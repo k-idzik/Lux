@@ -40,6 +40,8 @@ public class Sensor : MonoBehaviour {
 
     private Light sensorLight;
 
+    private AlertManager alertMan; //Because instances don't work apparently
+
     // Use this for initialization
     void Start()
     {
@@ -51,6 +53,8 @@ public class Sensor : MonoBehaviour {
         reverse = false;
 
         sensorLight = GetComponentInChildren<Light>();
+
+        alertMan = GameObject.FindGameObjectWithTag("Alert").GetComponent<AlertManager>();
     }
 
     /// <summary>
@@ -75,11 +79,11 @@ public class Sensor : MonoBehaviour {
         {
             RaycastHit hit;
 
-            
 
             if (Physics.Raycast(transform.position, direction, out hit, visionConeRange) && hit.transform.gameObject.tag == "Player")
             {
-                AlertManager.Instance.Alert(hit.transform);
+                //AlertManager.Instance.Alert(hit.transform); //Error
+                alertMan.Alert(hit.transform);
                 return true;
             }
             else
@@ -123,7 +127,8 @@ public class Sensor : MonoBehaviour {
         Vector3 direction = target.transform.position - transform.position;
         if(Physics.Raycast(transform.position, direction,out rayHit, detectionRadius) && rayHit.transform.gameObject == target)
         {
-            AlertManager.Instance.Alert(rayHit.transform);
+            //AlertManager.Instance.Alert(rayHit.transform); //Evil ass errors
+            alertMan.Alert(rayHit.transform);
         }
     }
 

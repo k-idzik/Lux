@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 114870634952776598}
   m_Layer: 0
   m_Name: AlertManager
-  m_TagString: Untagged
+  m_TagString: Alert
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1480,6 +1480,7 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 0}
   alerted: 0
+  dogsSpawned: 0
   lastKnownPosition: {fileID: 0}
   playerSpottedModel: {fileID: 1094094197407808}
   alertTime: 5

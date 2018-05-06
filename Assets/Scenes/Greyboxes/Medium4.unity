@@ -1022,6 +1022,11 @@ Prefab:
       propertyPath: _lights.Array.data[3]
       value: 
       objectReference: {fileID: 1481649947}
+    - target: {fileID: 114141919349404638, guid: 6de3a30b0b9c48b4c90482ff7d254e57,
+        type: 2}
+      propertyPath: nextScene
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6de3a30b0b9c48b4c90482ff7d254e57, type: 2}
   m_IsPrefabParent: 0
@@ -6705,6 +6710,10 @@ Prefab:
       propertyPath: spawnPoints.Array.data[3]
       value: 
       objectReference: {fileID: 269521534}
+    - target: {fileID: 1058530187722000, guid: 48f85bbc4f52dfc44bc677f02553fb17, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f85bbc4f52dfc44bc677f02553fb17, type: 2}
   m_IsPrefabParent: 0

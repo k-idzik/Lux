@@ -23,3 +23,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Greyboxes/Medium2.unity
     guid: 85af4af0d6402c149ab62816bbb2a3bd
+  - enabled: 1
+    path: Assets/Scenes/Greyboxes/Medium3.unity
+    guid: c273fdee10e6a014cb942712f94fbbdd
+  - enabled: 1
+    path: Assets/Scenes/Greyboxes/Medium4.unity
+    guid: 80f07882f54bc0a4c8e176e1a29ff1fd
+  - enabled: 1
+    path: Assets/Scenes/Greyboxes/Hard1.unity
+    guid: fa27dc1fff47c1045837c4a47bcf189b
+  - enabled: 1
+    path: Assets/Scenes/Greyboxes/Hard2.unity
+    guid: fb6d83a3137a9c7418b5e2be2630011b
