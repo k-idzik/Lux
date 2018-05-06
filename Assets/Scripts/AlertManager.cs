@@ -88,7 +88,7 @@ public class AlertManager : Singleton<AlertManager> {
 
         //Turn on LastSeen Player model
         playerSpottedModel.transform.position = lastKnownPosition.position;
-        playerSpottedModel.transform.rotation = lastKnownPosition.rotation;
+        //playerSpottedModel.transform.rotation = lastKnownPosition.rotation;
         playerSpottedModel.SetActive(true);
 
         //Start Alert Timer
