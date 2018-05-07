@@ -801,7 +801,11 @@ Prefab:
     - target: {fileID: 114713807123937390, guid: f5cb5591de6b5ff478fa6ef8d17ba3ba,
         type: 2}
       propertyPath: m_Text
-      value: LIKE NORMAL LIGHTS, WHITE AND RED LIGHT TILES WILL HURT YOU
+      value: 'LIKE NORMAL LIGHTS, WHITE AND RED LIGHT TILES WILL HURT YOU
+
+
+        YOUR HEALTH WILL REGENERATE OVER TIME, BUT ONLY AS FAR AS THE NOTCH IT HAS
+        PASSED'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5cb5591de6b5ff478fa6ef8d17ba3ba, type: 2}
