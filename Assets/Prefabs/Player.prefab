@@ -1181,8 +1181,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1477299426611656}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 5, y: 0, z: -1.75}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 5.25, y: -0, z: 0.02000022}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4858533128039354}
@@ -1644,8 +1644,6 @@ MonoBehaviour:
   _lights:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   _minimumNbTargetOnShadow: 1
   _detectMode: 1
   _raycastinRate: 10
@@ -1788,12 +1786,13 @@ MonoBehaviour:
   shadowRechargeRate: 0.5
   pulseRange: 8
   pulseRate: 0.4
-  pulseCost: 0.4
+  pulseCost: 0.52
   pulseCooldownTime: 0
   lightMaterial: {fileID: 2100000, guid: dac90dffb710eee4b9825779200b556d, type: 2}
   shadowMaterial: {fileID: 2100000, guid: 6bc84d837df09cb468b92fc2f36ecba5, type: 2}
   safeMaterial: {fileID: 2100000, guid: 8bffd4386f987db47a8c3f6714653dfa, type: 2}
   screenTint: {fileID: 0}
+  nextScene: 2
 --- !u!114 &114610820900243924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1971,7 +1970,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1506134362
+  randomSeed: 483989341
   InitialModule:
     serializedVersion: 3
     enabled: 1
