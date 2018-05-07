@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Greyboxes/Tutorial3.unity
     guid: 2e7a0b6785f25044ca339b27820daf51
   - enabled: 1
+    path: Assets/Scenes/Greyboxes/Tutorial4.unity
+    guid: a5d4301fe73095d469958e1c32b06688
+  - enabled: 1
     path: Assets/Scenes/Greyboxes/Medium2.unity
     guid: 85af4af0d6402c149ab62816bbb2a3bd
   - enabled: 1
