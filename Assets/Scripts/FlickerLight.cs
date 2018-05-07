@@ -10,12 +10,14 @@ public class FlickerLight : MonoBehaviour {
     private Light flickerLight;
 
 	// Use this for initialization
-	void Start () {
-        flickerLight = this.gameObject.GetComponent<Light>();	
+	void Start()
+    {
+        flickerLight = gameObject.GetComponent<Light>();	
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         //check if light state
         if (flickerLight.enabled) //on
         {

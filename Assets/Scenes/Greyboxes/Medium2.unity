@@ -1288,6 +1288,11 @@ Prefab:
       propertyPath: patrolRoute.Array.data[3]
       value: 
       objectReference: {fileID: 857252633}
+    - target: {fileID: 114750144347313062, guid: b474ab082ce9e324caf221c3e54c2990,
+        type: 2}
+      propertyPath: searchCooldown
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b474ab082ce9e324caf221c3e54c2990, type: 2}
   m_IsPrefabParent: 0
@@ -1647,6 +1652,11 @@ Prefab:
         type: 2}
       propertyPath: randomSeed
       value: 1351309906
+      objectReference: {fileID: 0}
+    - target: {fileID: 114750144347313062, guid: b474ab082ce9e324caf221c3e54c2990,
+        type: 2}
+      propertyPath: searchCooldown
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b474ab082ce9e324caf221c3e54c2990, type: 2}
@@ -4712,6 +4722,11 @@ Prefab:
       propertyPath: patrolRoute.Array.data[5]
       value: 
       objectReference: {fileID: 1558527209}
+    - target: {fileID: 114750144347313062, guid: b474ab082ce9e324caf221c3e54c2990,
+        type: 2}
+      propertyPath: searchCooldown
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b474ab082ce9e324caf221c3e54c2990, type: 2}
   m_IsPrefabParent: 0

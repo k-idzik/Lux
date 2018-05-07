@@ -648,7 +648,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1411980669
+  randomSeed: -479978118
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4089,7 +4089,6 @@ Transform:
   m_Children:
   - {fileID: 2040875022}
   - {fileID: 358143681}
-  - {fileID: 1595184376}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 182.758, z: 0}
@@ -4103,7 +4102,7 @@ Prefab:
     - target: {fileID: 114039568037326214, guid: 6de3a30b0b9c48b4c90482ff7d254e57,
         type: 2}
       propertyPath: _lights.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4480237411485484, guid: 6de3a30b0b9c48b4c90482ff7d254e57, type: 2}
       propertyPath: m_LocalPosition.x
@@ -4177,7 +4176,7 @@ Prefab:
         type: 2}
       propertyPath: _lights.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 990435012}
     - target: {fileID: 114039568037326214, guid: 6de3a30b0b9c48b4c90482ff7d254e57,
         type: 2}
       propertyPath: _lights.Array.data[3]
@@ -4927,7 +4926,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1710348338
+  randomSeed: 265422004
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -8370,7 +8369,6 @@ Transform:
   m_Children:
   - {fileID: 448714220}
   - {fileID: 1056870155}
-  - {fileID: 451489991}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 182.758, z: 0}
@@ -8493,63 +8491,6 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 448714219}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &451489990
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1213172027212930, guid: 3b8f7d4be258bec4d8019b0a429487bd,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 451489991}
-  - component: {fileID: 451489993}
-  - component: {fileID: 451489992}
-  m_Layer: 0
-  m_Name: PainSphere
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &451489991
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4419836697218398, guid: 3b8f7d4be258bec4d8019b0a429487bd,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 451489990}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0000079097, y: -0.000042321, z: -0.000052187}
-  m_LocalScale: {x: 3.7699459, y: 3.769945, z: 3.7699456}
-  m_Children: []
-  m_Father: {fileID: 442600509}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &451489992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114971471328123730, guid: 3b8f7d4be258bec4d8019b0a429487bd,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 451489990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c93c2a38d6ebba0409e2dcdacf6d56eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!135 &451489993
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 135211033518498078, guid: 3b8f7d4be258bec4d8019b0a429487bd,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 451489990}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
@@ -13132,7 +13073,6 @@ Transform:
   m_Children:
   - {fileID: 1230020243}
   - {fileID: 442915060}
-  - {fileID: 1230731727}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 182.758, z: 0}
@@ -14584,63 +14524,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &1230731726
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1213172027212930, guid: 3b8f7d4be258bec4d8019b0a429487bd,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1230731727}
-  - component: {fileID: 1230731729}
-  - component: {fileID: 1230731728}
-  m_Layer: 0
-  m_Name: PainSphere
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1230731727
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4419836697218398, guid: 3b8f7d4be258bec4d8019b0a429487bd,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1230731726}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0000079097, y: -0.000042321, z: -0.000052187}
-  m_LocalScale: {x: 3.7699459, y: 3.769945, z: 3.7699456}
-  m_Children: []
-  m_Father: {fileID: 848556112}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1230731728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114971471328123730, guid: 3b8f7d4be258bec4d8019b0a429487bd,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1230731726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c93c2a38d6ebba0409e2dcdacf6d56eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!135 &1230731729
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 135211033518498078, guid: 3b8f7d4be258bec4d8019b0a429487bd,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1230731726}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1241666504
 GameObject:
   m_ObjectHideFlags: 0
@@ -14984,8 +14867,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae89667e0fccc447827df337b2e5d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTime: 0.4
-  offTime: 0.1
+  onTime: 0.2
+  offTime: 0.75
 --- !u!1001 &1457535490
 Prefab:
   m_ObjectHideFlags: 0
@@ -15268,63 +15151,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!1 &1595184375
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1213172027212930, guid: 3b8f7d4be258bec4d8019b0a429487bd,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1595184376}
-  - component: {fileID: 1595184378}
-  - component: {fileID: 1595184377}
-  m_Layer: 0
-  m_Name: PainSphere
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1595184376
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4419836697218398, guid: 3b8f7d4be258bec4d8019b0a429487bd,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1595184375}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0000079097, y: -0.000042321, z: -0.000052187}
-  m_LocalScale: {x: 3.7699459, y: 3.769945, z: 3.7699456}
-  m_Children: []
-  m_Father: {fileID: 212400813}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1595184377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114971471328123730, guid: 3b8f7d4be258bec4d8019b0a429487bd,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1595184375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c93c2a38d6ebba0409e2dcdacf6d56eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!135 &1595184378
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 135211033518498078, guid: 3b8f7d4be258bec4d8019b0a429487bd,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1595184375}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1606872726
 GameObject:
   m_ObjectHideFlags: 0
@@ -16243,8 +16069,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae89667e0fccc447827df337b2e5d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTime: 0.4
-  offTime: 0.1
+  onTime: 0.2
+  offTime: 0.75
 --- !u!1001 &1992346949
 Prefab:
   m_ObjectHideFlags: 0
