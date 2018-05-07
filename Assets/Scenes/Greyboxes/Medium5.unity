@@ -920,8 +920,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae89667e0fccc447827df337b2e5d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTime: 0.4
-  offTime: 0.1
+  onTime: 0.5
+  offTime: 1
 --- !u!1001 &219770823
 Prefab:
   m_ObjectHideFlags: 0
@@ -3099,8 +3099,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae89667e0fccc447827df337b2e5d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTime: 0.4
-  offTime: 0.1
+  onTime: 0.5
+  offTime: 1
 --- !u!1001 &1004428768
 Prefab:
   m_ObjectHideFlags: 0
@@ -4422,12 +4422,12 @@ Prefab:
     - target: {fileID: 224104486829001050, guid: e903b9ac0155aea498718995ab45f046,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 484.5
+      value: 335
       objectReference: {fileID: 0}
     - target: {fileID: 224104486829001050, guid: e903b9ac0155aea498718995ab45f046,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 272.5
+      value: 209.5
       objectReference: {fileID: 0}
     - target: {fileID: 224104486829001050, guid: e903b9ac0155aea498718995ab45f046,
         type: 2}
@@ -6857,8 +6857,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae89667e0fccc447827df337b2e5d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTime: 0.4
-  offTime: 0.1
+  onTime: 0.5
+  offTime: 1
 --- !u!1 &2147226014
 GameObject:
   m_ObjectHideFlags: 0
