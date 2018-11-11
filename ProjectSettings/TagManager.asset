@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Light
+  - Waypoint
+  - Enemy
+  - Goal
+  - LightTile
+  - Dog Spawn
+  - Orb Sensor
+  - Cone Sensor
+  - Sensor
+  - SafeZone
+  - Alert
   layers:
   - Default
   - TransparentFX
@@ -13,7 +24,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Player
   - 
   - 
   - 
